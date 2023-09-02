@@ -19,13 +19,13 @@ public class ChopTestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             animator.SetBool("ChopReset", false);
             animator.SetBool("ChopStarted", true);
             chopDone = false;
         }
-        if (Input.GetKeyDown(KeyCode.Keypad5) && chopDone)
+        if (Input.GetKeyDown(KeyCode.Alpha5) && chopDone)
         {
             animator.SetBool("ChopStarted", false);
             animator.SetBool("ChopReset", true);

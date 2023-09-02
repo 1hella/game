@@ -19,7 +19,7 @@ public class MenuMusicPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             audioSource.clip = intro1;
             audioSource.Play();
