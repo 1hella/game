@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActivityController : MonoBehaviour
 {
     public GameObject player;
+    public GameObject taskPlayer;
     public BoxCollider2D activityCollider;
     public Animator animator;
     private bool startedTask;
@@ -63,6 +64,7 @@ public class ActivityController : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         player.GetComponent<PlayerController>().canMove = false;
+        player.transform.position = new Vector3(-6,-3,-1);
     }
 
     private void FinishTask()
