@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 904660154}
   - component: {fileID: 904660153}
   - component: {fileID: 904660155}
+  - component: {fileID: 904660156}
   m_Layer: 0
   m_Name: chopTest
   m_TagString: Untagged
@@ -604,6 +605,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &904660156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904660152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6d593fedcba464faa1e5d367189d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 904660155}
 --- !u!1 &1284979385
 GameObject:
   m_ObjectHideFlags: 0
