@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerBody;
     public float speed;
+    public bool canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        playerBody.velocity = movement * speed;
-
+        if (canMove) {
+            Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            playerBody.velocity = movement * speed;
+        }
     }
 }

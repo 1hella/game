@@ -9,6 +9,7 @@ public class ChopTestScript : MonoBehaviour
     //once the anim is done, press 5 to go back to the start pose
 
     public Animator animator;
+    private bool chopStarted = false;
     private bool chopDone = false;
     // Start is called before the first frame update
     void Start()
@@ -19,11 +20,12 @@ public class ChopTestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha4) && !chopStarted)
         {
             animator.SetBool("ChopReset", false);
             animator.SetBool("ChopStarted", true);
             chopDone = false;
+            chopStarted = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5) && chopDone)
         {
@@ -36,5 +38,6 @@ public class ChopTestScript : MonoBehaviour
     public void ChopDone()
     {
         chopDone = true;
+        chopStarted = false;
     }
 }

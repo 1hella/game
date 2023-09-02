@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 904660155}
   - component: {fileID: 904660156}
   m_Layer: 0
-  m_Name: chopTest
+  m_Name: chopCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
