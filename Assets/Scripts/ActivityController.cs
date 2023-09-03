@@ -63,8 +63,9 @@ public class ActivityController : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
+        player.SetActive(false);
         player.GetComponent<PlayerController>().canMove = false;
-        player.transform.position = new Vector3(-6,-3,-1);
+        //player.transform.position = new Vector3(-6,-3,-1);
     }
 
     private void FinishTask()
@@ -76,6 +77,7 @@ public class ActivityController : MonoBehaviour
         {
             child.gameObject.SetActive(false);
         }
+        player.SetActive(true);
         player.GetComponent<PlayerController>().canMove = true;
     }
 }
