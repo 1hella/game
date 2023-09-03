@@ -5,11 +5,14 @@ using UnityEngine;
 public class ActivityController : MonoBehaviour
 {
     public GameObject player;
+    public GameObject keine;
     public GameObject taskPlayer;
     public BoxCollider2D activityCollider;
     public Animator animator;
     public TaskController taskController;
     public UIController uiController;
+    public Vector2 newPlayerPosition;
+    public Vector2 newKeinePosition;
     private bool startedTask;
     private bool doneTask;
     private bool inActivationRange;
@@ -75,6 +78,9 @@ public class ActivityController : MonoBehaviour
         }
         player.SetActive(false);
         player.GetComponent<PlayerController>().canMove = false;
+        keine.SetActive(false);
+        keine.GetComponent<KeineController>().canMove = false;
+        snapCharacterPositions();
         //player.transform.position = new Vector3(-6,-3,-1);
     }
 
@@ -89,8 +95,16 @@ public class ActivityController : MonoBehaviour
         }
         player.SetActive(true);
         player.GetComponent<PlayerController>().canMove = true;
+        keine.SetActive(true);
+        keine.GetComponent<KeineController>().canMove = true;
         taskController.FinishTask(this);
         startedTask = false;
         doneTask = true;
+    }
+
+    private void snapCharacterPositions ()
+    {
+        player.transform.position = new Vector3(newPlayerPosition.x, newPlayerPosition.y, player.transform.position.z);
+        keine.transform.position = new Vector3(newKeinePosition.x, newKeinePosition.y, keine.transform.position.z);
     }
 }
