@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
         if (canMove) {
             Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             playerBody.velocity = movement * speed;
+        } else
+        {
+            playerBody.velocity = new Vector2(0, 0);
         }
     }
 }
