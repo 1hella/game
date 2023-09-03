@@ -9,6 +9,12 @@ public class GameController : MonoBehaviour
     public DialogueManager dialogController;
     public UIController uiController;
     public PlayerController playerController;
+    public GameObject player;
+    public GameObject keine;
+    private bool inScene = false;
+    private int nextDiag = 0;
+    private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
+
     private const int NUM_TASKS = 4;
     private bool endDay;
 
@@ -36,7 +42,12 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!inScene && Input.GetKeyDown(KeyCode.M) && (morningTestCounter < 2))
+        {
+            morningTestCounter++;
+            StartMorningEvent(0);
+        }
+
     }
 
     public void RestartLevel()
@@ -45,5 +56,30 @@ public class GameController : MonoBehaviour
         dialogController.PlayNext();
         taskController.ResetAllTasks();
         EndDay = false;
+    }
+
+    private void StartMorningEvent(int dayId)
+    {
+        inScene = true;
+        keine.GetComponent<KeineController>().GoOffscreen();
+        //player go to start
+        player.GetComponent<PlayerController>().GoToHelloPosition();
+        //keine start walking in
+        keine.GetComponent<KeineController>().WalkToEvent();
+    }
+
+    public void StartDialogue()
+    {
+        keine.GetComponent<KeineController>().canFollow = false;
+        player.GetComponent<PlayerController>().canMove = false;
+        if (dialogController.StartDialogueSet(nextDiag))
+            nextDiag++;
+    }
+
+    public void DoneDialogue()
+    {
+        keine.GetComponent<KeineController>().canFollow = true;
+        player.GetComponent<PlayerController>().canMove = true;
+        inScene = false;
     }
 }
