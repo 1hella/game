@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24af453e312d154fa5341612066c5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 887806976}
   boxName: {fileID: 1053139623}
   boxSentence: {fileID: 1938440040}
   portrait: {fileID: 5721782}
@@ -1116,11 +1117,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1604778819}
+  gameController: {fileID: 887806976}
   keineTransform: {fileID: 588954560}
   followDistance: 1.5
   speed: 3
   body: {fileID: 588954562}
-  canMove: 1
+  offscreenPosition: {x: 3.4, y: -6, z: 0}
+  meetingPosition: {x: 0, y: -1.9, z: 0}
+  canFollow: 1
 --- !u!50 &588954562
 Rigidbody2D:
   serializedVersion: 4
@@ -1181,6 +1185,8 @@ MonoBehaviour:
   dialogController: {fileID: 105640550}
   uiController: {fileID: 2136782849}
   playerController: {fileID: 1604778823}
+  player: {fileID: 1604778819}
+  keine: {fileID: 588954558}
 --- !u!4 &887806978
 Transform:
   m_ObjectHideFlags: 0

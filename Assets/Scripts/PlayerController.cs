@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public bool canMove = true;
     private Vector3 initialPosition;
+    //public Vector3 helloPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ResetLocation() { 
+        playerBody.position = initialPosition;
+    }
+
+    public void GoToHelloPosition()
+    {
+        canMove = false;
         playerBody.position = initialPosition;
     }
 }
