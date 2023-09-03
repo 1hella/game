@@ -10,7 +10,7 @@ public class KeineController : MonoBehaviour
     public float speed;
     public Rigidbody2D body;
 
-    private bool inTask = false;
+    public bool canMove = true;
     private bool sitting = false;
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class KeineController : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(keineTransform.position, player.transform.position);
-        if (!inTask && !sitting && (dist > followDistance))
+        if (canMove && !sitting && (dist > followDistance))
         {
             Vector2 playerPos = player.transform.position;
             Vector2 keinePos = keineTransform.position;
