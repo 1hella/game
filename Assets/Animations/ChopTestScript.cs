@@ -2,36 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChopTestScript : MonoBehaviour
+public class ChopTestScript : TaskScript
 {
-
-    //press 4 to play animation
-    //once the anim is done, press 5 to go back to the start pose
 
     public Animator animator;
     private bool chopStarted = false;
     private bool chopDone = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int count = 0;
+    private const int MAX_COUNT = 4 * 2 - 1; // todo: remove 2 when animation resets itself
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha4) && !chopStarted)
-        {
-            animator.SetBool("ChopReset", false);
-            animator.SetBool("ChopStarted", true);
-            chopDone = false;
-            chopStarted = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5) && chopDone)
-        {
-            animator.SetBool("ChopStarted", false);
-            animator.SetBool("ChopReset", true);
-        }
     }
 
     //called by anim event in the chop swing animation
@@ -39,5 +21,41 @@ public class ChopTestScript : MonoBehaviour
     {
         chopDone = true;
         chopStarted = false;
+        stopTask();
+    }
+
+    public override void startTask()
+    {
+        // show and start the timers
+    }
+
+    public override void stopTask()
+    {
+        // stop the timers and hide them
+    }
+
+    public override bool progress()
+    {
+        // todo: reset the animation at the end of the frame.
+        // for now, reset the animation on every second count
+        if (!chopStarted && count < MAX_COUNT)
+        {
+            count++;
+            if (count % 2 == 1)
+            {
+                animator.SetBool("ChopReset", false);
+                animator.SetBool("ChopStarted", true);
+                chopDone = false;
+                chopStarted = true;
+            } else
+            {
+                animator.SetBool("ChopReset", true);
+                animator.SetBool("ChopStarted", false);
+            }
+        } else if (count >= MAX_COUNT)
+        {
+            return true;
+        }
+        return false;
     }
 }
