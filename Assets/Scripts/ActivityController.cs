@@ -9,7 +9,7 @@ public class ActivityController : MonoBehaviour
     public BoxCollider2D activityCollider;
     public Animator animator;
     private bool startedTask;
-    private bool doneTask;
+    //private bool doneTask;
     private bool inActivationRange;
 
 
@@ -71,7 +71,7 @@ public class ActivityController : MonoBehaviour
     private void FinishTask()
     {
         Debug.Log("finished task");
-        doneTask = true;
+        //doneTask = true;
         animator.SetBool("Done", true);
         foreach (Transform child in transform)
         {
