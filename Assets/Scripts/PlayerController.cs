@@ -2,41 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterControllerScript
 {
-
-    private Rigidbody2D playerBody;
-    public float speed;
-    public bool canMove = true;
-    private Vector3 initialPosition;
-    //public Vector3 helloPosition;
-
     // Start is called before the first frame update
     void Start()
     {
-        playerBody = GetComponent<Rigidbody2D>();    
-        initialPosition = playerBody.position;
+        initialPosition = body.position;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        if (canMove) {
-            Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-            playerBody.velocity = movement * speed;
+        /*if (canMoveFreely) {
+            DefaultMovement();
         } else
         {
-            playerBody.velocity = new Vector2(0, 0);
+            body.velocity = new Vector2(0, 0);
         }
+        */
+        base.Update();
     }
 
-    public void ResetLocation() { 
-        playerBody.position = initialPosition;
-    }
-
-    public void GoToHelloPosition()
+    protected override void DefaultMovement()
     {
-        canMove = false;
-        playerBody.position = initialPosition;
+        if (canMoveFreely)
+        {
+            Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            body.velocity = movement * speed;
+        }
+        else
+            body.velocity = new Vector2(0, 0);
+
     }
+
+    public void ResetLocation() {
+        body.position = initialPosition;
+    }
+
+    /*public void GoToHelloPosition()
+    {
+        canMoveFreely = false;
+        body.position = initialPosition;
+    }
+    */
 }

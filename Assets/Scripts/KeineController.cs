@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeineController : MonoBehaviour
+public class KeineController : CharacterControllerScript
 {
     public GameObject player;
-    public GameObject gameController;
-    public Transform keineTransform;
+    //public GameObject gameController;
     public float followDistance;
-    public float speed;
-    public Rigidbody2D body;
-    public Vector3 offscreenPosition;
-    public Vector3 meetingPosition;
+    //public Vector3 meetingPosition;
 
-    public bool canFollow = true;
-    private bool sitting = false;
-    private bool walkingToEvent = false;
+    //private bool sitting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,48 +17,57 @@ public class KeineController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        if (walkingToEvent)
+        /*
+        if (inEvent)
         {
-            WalkToEvent();
+            EventMovement();
         }
         else
         {
-            float dist = Vector3.Distance(keineTransform.position, player.transform.position);
-            if (canFollow && !sitting && (dist > followDistance))
+            if (canMoveFreely)
             {
-                Vector2 playerPos = player.transform.position;
-                Vector2 keinePos = keineTransform.position;
-                body.velocity = (playerPos - keinePos).normalized * speed;
+                DefaultMovement();
             }
-            else
-            {
-                body.velocity = new Vector3(0, 0, 0);
-            }
+        }
+        */
+        //Super.Update();
+        base.Update();
+    }
+
+    protected override void DefaultMovement()
+    {
+        float dist = Vector3.Distance(body.position, player.transform.position);
+        if (dist > followDistance)
+        {
+            Vector2 playerPos = player.transform.position;
+            Vector2 keinePos = body.position;
+            body.velocity = (playerPos - keinePos).normalized * speed;
+        }
+        else
+        {
+            body.velocity = new Vector3(0, 0, 0);
         }
     }
 
-    public void GoOffscreen()
-    {
-        body.position = offscreenPosition;
-        canFollow = false;
-    }
-
+    /*
     public void WalkToEvent()
     {
-        walkingToEvent = true;
+        inEvent = true;
         float dist = Vector2.Distance(body.position, meetingPosition);
-        Debug.Log(dist);
+        //Debug.Log(dist);
         if (dist > 0.02)
         {
             body.velocity = ((Vector2)meetingPosition - body.position).normalized * speed;
         } else
         {
             body.velocity = Vector3.zero;
-            walkingToEvent = false;
-            gameController.GetComponent<GameController>().StartDialogue();
+            inEvent = false;
+            //gameController.GetComponent<GameController>().StartDialogue();
+            eventController.DoneMovement();
         }
     }
+    */
         
 }
