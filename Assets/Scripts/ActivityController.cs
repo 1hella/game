@@ -8,15 +8,17 @@ public class ActivityController : MonoBehaviour
     public GameObject taskPlayer;
     public BoxCollider2D activityCollider;
     public Animator animator;
+    public TaskController taskController;
+    public UIController uiController;
     private bool startedTask;
-    //private bool doneTask;
+    private bool doneTask;
     private bool inActivationRange;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        taskController.AddActivityController(this);
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class ActivityController : MonoBehaviour
             FinishTask();
         }
 
-        if (!startedTask && inActivationRange && Input.GetKeyDown(KeyCode.Space))
+        if (!uiController.isFadedToBlack() && !startedTask && !doneTask && inActivationRange && Input.GetKeyDown(KeyCode.Space))
         {
             BeginTask();
         }
@@ -55,6 +57,14 @@ public class ActivityController : MonoBehaviour
         }
     }
 
+    public void ResetTask()
+    {
+        Debug.Log("reset task");
+        startedTask = false;
+        animator.SetBool("Done", false);
+        doneTask = false;
+    }
+
     private void BeginTask()
     {
         Debug.Log("started task");
@@ -79,5 +89,8 @@ public class ActivityController : MonoBehaviour
         }
         player.SetActive(true);
         player.GetComponent<PlayerController>().canMove = true;
+        taskController.FinishTask(this);
+        startedTask = false;
+        doneTask = true;
     }
 }

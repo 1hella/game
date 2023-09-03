@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerBody;
     public float speed;
     public bool canMove = true;
+    private Vector3 initialPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();    
+        initialPosition = playerBody.position;
     }
 
     // Update is called once per frame
@@ -25,5 +27,9 @@ public class PlayerController : MonoBehaviour
         {
             playerBody.velocity = new Vector2(0, 0);
         }
+    }
+
+    public void ResetLocation() { 
+        playerBody.position = initialPosition;
     }
 }

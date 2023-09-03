@@ -74,4 +74,9 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    public void PlayNext()
+    {
+        // play next set of dialog for the day
+    }
 }
