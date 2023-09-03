@@ -38,7 +38,7 @@ public class TaskController : MonoBehaviour
         }
     }
 
-    internal void AddActivityController(ActivityController activityController)
+    public void AddActivityController(ActivityController activityController)
     {
         tasks.Add(activityController);
     }
