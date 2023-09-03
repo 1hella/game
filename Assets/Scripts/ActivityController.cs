@@ -9,7 +9,7 @@ public class ActivityController : MonoBehaviour
     public BoxCollider2D activityCollider;
     public Animator animator;
     private bool startedTask;
-    private bool doneTask;
+    //private bool doneTask;
     private bool inActivationRange;
 
 
@@ -64,13 +64,13 @@ public class ActivityController : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         player.GetComponent<PlayerController>().canMove = false;
-        player.transform.position = new Vector3(-6,-3,-1);
+        player.transform.position = new Vector3(-6,-3, 0);
     }
 
     private void FinishTask()
     {
         Debug.Log("finished task");
-        doneTask = true;
+        //doneTask = true;
         animator.SetBool("Done", true);
         foreach (Transform child in transform)
         {
