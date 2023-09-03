@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivityController : MonoBehaviour
@@ -13,9 +11,12 @@ public class ActivityController : MonoBehaviour
     public UIController uiController;
     public Vector2 newPlayerPosition;
     public Vector2 newKeinePosition;
+    public TaskScript taskScript;
+    
     private bool startedTask;
     private bool doneTask;
     private bool inActivationRange;
+    private int count;
 
 
     // Start is called before the first frame update
@@ -30,7 +31,11 @@ public class ActivityController : MonoBehaviour
 
         if (startedTask && Input.GetKeyDown(KeyCode.Space))
         {
-            FinishTask();
+            bool finished = taskScript.progress();
+            if (finished)
+            {
+                FinishTask();
+            }
         }
 
         if (!uiController.isFadedToBlack() && !startedTask && !doneTask && inActivationRange && Input.GetKeyDown(KeyCode.Space))
@@ -82,6 +87,7 @@ public class ActivityController : MonoBehaviour
         keine.GetComponent<KeineController>().canFollow = false;
         snapCharacterPositions();
         //player.transform.position = new Vector3(-6,-3,-1);
+        taskScript.startTask();
     }
 
     private void FinishTask()
@@ -100,6 +106,7 @@ public class ActivityController : MonoBehaviour
         taskController.FinishTask(this);
         startedTask = false;
         doneTask = true;
+        taskScript.stopTask();
     }
 
     private void snapCharacterPositions ()

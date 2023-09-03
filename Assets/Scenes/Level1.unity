@@ -319,6 +319,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5721780}
   m_CullTransparentMesh: 1
+--- !u!1 &28852924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28852925}
+  m_Layer: 0
+  m_Name: Tasks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &28852925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28852924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49707878, y: -0.2723775, z: -2.0680802}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 273648278}
+  - {fileID: 2006589152}
+  - {fileID: 1333196777}
+  - {fileID: 2042289712}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105640549
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +404,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251018099
 GameObject:
@@ -414,7 +449,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &273648276
 GameObject:
@@ -431,7 +466,7 @@ GameObject:
   - component: {fileID: 273648280}
   - component: {fileID: 273648282}
   m_Layer: 0
-  m_Name: ChopTask
+  m_Name: CharcoalTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,14 +531,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273648276}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.11, y: 1.69, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.6129212, y: 1.9623775, z: 2.0680802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1799889575}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 28852925}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &273648279
 PolygonCollider2D:
@@ -577,6 +612,7 @@ MonoBehaviour:
   uiController: {fileID: 2136782849}
   newPlayerPosition: {x: 4.3, y: 1.6}
   newKeinePosition: {x: 5.9, y: 1.6}
+  taskScript: {fileID: 1799889572}
 --- !u!61 &273648281
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1102,7 +1138,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &588954561
 MonoBehaviour:
@@ -1200,7 +1236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909648797
 GameObject:
@@ -1802,7 +1838,7 @@ GameObject:
   - component: {fileID: 1333196773}
   - component: {fileID: 1333196772}
   m_Layer: 0
-  m_Name: ChopTask (2)
+  m_Name: LaundryTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,6 +1886,7 @@ MonoBehaviour:
   uiController: {fileID: 2136782849}
   newPlayerPosition: {x: -4.7, y: -0.6}
   newKeinePosition: {x: -3.8, y: -1.5}
+  taskScript: {fileID: 1484705907}
 --- !u!61 &1333196774
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2005,14 +2042,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333196771}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.91, y: -0.63, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.4070787, y: -0.3576225, z: 2.0680802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1484705906}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 28852925}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342856965
 GameObject:
@@ -2462,7 +2499,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604778819
 GameObject:
@@ -2991,7 +3028,7 @@ GameObject:
   - component: {fileID: 2006589148}
   - component: {fileID: 2006589147}
   m_Layer: 0
-  m_Name: ChopTask (1)
+  m_Name: BambooTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3039,6 +3076,7 @@ MonoBehaviour:
   uiController: {fileID: 2136782849}
   newPlayerPosition: {x: 4.2, y: -3.7}
   newKeinePosition: {x: 4.2, y: -2.6}
+  taskScript: {fileID: 4845441}
 --- !u!61 &2006589149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3194,14 +3232,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006589146}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.47, y: -3.68, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.972921, y: -3.4076226, z: 2.0680802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4845440}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 28852925}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042289706
 GameObject:
@@ -3218,7 +3256,7 @@ GameObject:
   - component: {fileID: 2042289708}
   - component: {fileID: 2042289707}
   m_Layer: 0
-  m_Name: ChopTask (3)
+  m_Name: CookingTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3266,6 +3304,7 @@ MonoBehaviour:
   uiController: {fileID: 2136782849}
   newPlayerPosition: {x: -3.3, y: -4.1}
   newKeinePosition: {x: -1.6, y: -4.4}
+  taskScript: {fileID: 909648799}
 --- !u!61 &2042289709
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3421,14 +3460,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042289706}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.7, y: -4.68, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.1970787, y: -4.4076223, z: 2.0680802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 909648798}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 28852925}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136782848
 GameObject:
@@ -3474,5 +3513,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
