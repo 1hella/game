@@ -17,7 +17,12 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFadedToBlack() && Input.GetKeyDown(KeyCode.Space)) {
+        if (!isFadedToBlack() && gameController.EndDay)
+        {
+            Debug.Log("Ending day");
+            StartCoroutine(FadeBlackOutSquare(true));
+            gameController.EndDay = false;
+        } else if (isFadedToBlack() && Input.GetKeyDown(KeyCode.Space)) {
             gameController.RestartLevel();
             StartCoroutine(FadeBlackOutSquare(false));
         }
@@ -25,11 +30,13 @@ public class UIController : MonoBehaviour
 
     private IEnumerator FadeBlackOutSquare(bool fadeToBlack = true, int fadeSpeed = 2)
     {
+        
         Color objectColor = blackOutSquare.GetComponent<SpriteRenderer>().color;
         float fadeAmount;
 
         if (fadeToBlack)
         {
+            Debug.Log("fading to black");
             while (blackOutSquare.GetComponent<SpriteRenderer>().color.a < 1)
             {
                 fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public UIController uiController;
     public PlayerController playerController;
     private const int NUM_TASKS = 4;
+    private bool endDay;
 
     public int Score
     {
@@ -19,10 +20,12 @@ public class GameController : MonoBehaviour
             score = value;
             if (score % NUM_TASKS == 0 && score > 0)
             {
-                EndDay();
+                EndDay = true;
             }
         }
     }
+
+    public bool EndDay { get => endDay; set => endDay = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -36,15 +39,11 @@ public class GameController : MonoBehaviour
         
     }
 
-    void EndDay()
-    {
-        uiController.FadeToBlack(true);
-    }
-
     public void RestartLevel()
     {
         playerController.ResetLocation();
         dialogController.PlayNext();
         taskController.ResetAllTasks();
+        EndDay = false;
     }
 }
