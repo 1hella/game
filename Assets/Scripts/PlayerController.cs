@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : CharacterControllerScript
 {
 
     private Rigidbody2D playerBody;
-    public float speed;
     public bool canMove = true;
-    private Vector3 initialPosition;
     private Animator animator;
     //public Vector3 helloPosition;
 
@@ -18,10 +14,7 @@ public class PlayerController : CharacterControllerScript
         playerBody = GetComponent<Rigidbody2D>();    
         animator = GetComponent<Animator>();
         initialPosition = body.position;
-    }
-
-    protected override void Update() {
-        base.Update();
+        SetAnimator(animator);
     }
 
     protected override void DefaultMovement()
