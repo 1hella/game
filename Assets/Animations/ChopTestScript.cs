@@ -41,7 +41,7 @@ public class ChopTestScript : TaskScript
             }
             if (keyDown)
             {
-                input += .5f * Time.deltaTime;
+                input += .75f * Time.deltaTime;
                 if (input > 100)
                 {
                     input = 100;
