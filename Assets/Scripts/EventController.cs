@@ -111,6 +111,7 @@ public class EventController : MonoBehaviour
         keineController.BeginEvent(keineFoodTimeTargets);
         playerController.BeginEvent(mokouFoodTimeTargets);
         eventHasDiag = false;
+
     }
 
     public void DoLategameFoodTime()
