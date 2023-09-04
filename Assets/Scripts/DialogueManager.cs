@@ -12,22 +12,24 @@ public class DialogueManager : MonoBehaviour
     public EventController eventController;
     public TextMeshProUGUI boxName;
     public TextMeshProUGUI boxSentence;
+    public Image portrait;
     public GameObject diagPanel;
+    public Sprite[] portraits;
 
-    static (string name, string sentence) [] diag1 = new (string, string)[] {
-        ("Keine", "Test dialogue A1!"),
-        ("Mokou", "Test dialogue A2"),
-        ("Keine", "Test dialogue A3")};
+    static (int portraitId, string name, string sentence) [] diag1 = new (int, string, string)[] {
+        (0, "Keine", "Test dialogue A1!"),
+        (1, "Mokou", "Test dialogue A2"),
+        (0, "Keine", "Test dialogue A3")};
 
-    static (string name, string sentence)[] diag2 = new (string, string)[] {
-        ("Keine", "Test dialogue B1!"),
-        ("Mokou", "Test dialogue B2"),
-        ("Mokou", "Test dialogue B3"),
-        ("Keine", "Test dialogue B4!")};
+    static (int portraitId, string name, string sentence)[] diag2 = new (int, string, string)[] {
+        (0, "Keine", "Test dialogue B1!"),
+        (1, "Mokou", "Test dialogue B2"),
+        (1, "Mokou", "Test dialogue B3"),
+        (0, "Keine", "Test dialogue B4!")};
 
-    (string name, string sentence)[] currentDiag;
+    (int portraitId, string name, string sentence)[] currentDiag;
 
-    (string name, string sentence)[][] diagLibrary = new (string, string)[][] {
+    (int portraitId, string name, string sentence)[][] diagLibrary = new (int, string, string)[][] {
         diag1, diag2 };
 
     private int currentDiagId = 0;
@@ -55,6 +57,7 @@ public class DialogueManager : MonoBehaviour
             }
             boxName.text = currentDiag[sentenceId].name;
             boxSentence.text = currentDiag[sentenceId].sentence;
+            portrait.sprite = portraits[currentDiag[sentenceId].portraitId];
         }
         /*
         if (!dialogueRunning && Input.GetKeyDown(KeyCode.Alpha6))
@@ -97,6 +100,7 @@ public class DialogueManager : MonoBehaviour
 
         boxName.text = currentDiag[sentenceId].name;
         boxSentence.text = currentDiag[sentenceId].sentence;
+        portrait.sprite = portraits[currentDiag[sentenceId].portraitId];
         return true;
     }
     private void FinishDiag()
