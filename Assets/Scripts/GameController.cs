@@ -50,6 +50,11 @@ public class GameController : MonoBehaviour
             eventController.DoMorningEvent();
         }
 
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            eventController.DoPostFoodEvent();
+        }
+
     }
 
     public void RestartLevel()

@@ -105,6 +105,6 @@ public class DialogueManager : MonoBehaviour
     }
     private void FinishDiag()
     {
-        eventController.DoneEvent();
+        eventController.DoneDiag();
     }
 }
