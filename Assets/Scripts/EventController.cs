@@ -120,11 +120,13 @@ public class EventController : MonoBehaviour
         switch (currentEvent)
         {
             case EventType.Morning:
+            case EventType.LateMorning:
                 if (dialogController.StartDialogueSet(nextDiagId))
                 {
-                    keineController.FaceLeft();
+                    if (keineAlive)
+                        keineController.FaceLeft();
                     playerController.FaceRight();
-                    if (nextDiagId < 3)
+                    if (nextDiagId < 12)
                         nextDiagId++;
                 }
                 break;
@@ -134,16 +136,6 @@ public class EventController : MonoBehaviour
                 mokouEating.GetComponent<MokouEatingScript>().Initialize();
                 if (keineAlive)
                     keine.SetActive(false);
-                break;
-            case EventType.LateMorning:
-                if (dialogController.StartDialogueSet(nextDiagId))
-                {
-                    if (keineAlive)
-                        keineController.FaceLeft();
-                    playerController.FaceRight();
-                    if (nextDiagId < 3)
-                        nextDiagId++;
-                }
                 break;
             default:
                 DoneEvent();
