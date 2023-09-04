@@ -15,20 +15,70 @@ public class DialogueManager : MonoBehaviour
     public GameObject diagPanel;
 
     static (string name, string sentence) [] diag1 = new (string, string)[] {
-        ("Keine", "Test dialogue A1!"),
-        ("Mokou", "Test dialogue A2"),
-        ("Keine", "Test dialogue A3")};
+        ("Mokou", "\"Mornin', Keine. Thanks for coming to help out with the charcoal making.\""),
+        ("Keine", "\"Yeah, of course! Anything for a friend! Remember to press the space bar to complete tasks.\"")};
 
     static (string name, string sentence)[] diag2 = new (string, string)[] {
-        ("Keine", "Test dialogue B1!"),
-        ("Mokou", "Test dialogue B2"),
-        ("Mokou", "Test dialogue B3"),
-        ("Keine", "Test dialogue B4!")};
+        ("Keine", "\"Hello, Mokou! Shall we do our best today as well?\""),
+        ("Mokou", "\"Ah- Keine! *yawn… S'pose we should jump right in.\"")
+    };
+
+    static (string name, string sentence)[] diag3 = new (string, string)[] {
+        ("Mokou", "\"Hey, Keine. Thanks for coming to help so often.\""),
+        ("Mokou", "\"Customers keep piling up for the charcoal.\""),
+        ("Keine", "\"No trouble! Even though it's messy, making the stuff is fun!\""),
+    };
+
+    static (string name, string sentence)[] diag4 = new (string, string)[] {
+        ("Keine", "\"Hello, Mokou! The weather has been wonderful lately.\""),
+        ("Mokou", "\"Heyo! Good to see you!\"")
+    };
+
+    static (string name, string sentence)[] diag5 = new (string, string)[] {
+        ("Keine", "\"Good morning. It's quite chilly today, isn't it?\""),
+        ("Mokou", "\"Hehe. What do you mean? Summer's barely over!\"")
+    };
+
+    static (string name, string sentence)[] diag6 = new (string, string)[] {
+        ("Keine", "\"Ah, Mokou… I'm not sure how much I can do, but I'm happy to help.\""),
+        ("Mokou", "\"That's alright! Every little bit helps!\"")
+    };
+
+    static (string name, string sentence)[] diag7 = new (string, string)[] {
+        ("Keine", "\"Ah, Mokou… The gift for my granddaughter was wonderful. She's very grateful.\""),
+        ("Mokou", "\"Always! Le'mme finish up the charcoal, and we'll eat some good food!\"")
+    };
+
+    static (string name, string sentence)[] diag8 = new (string, string)[] {
+        ("Mokou", "\"Sup, Keine? Why don't you have a seat? I shouldn't take too long.\""),
+        ("Keine", "\"Ah, thank you… The breeze is lovely today…\"")
+    };
+
+    static (string name, string sentence)[] diag9 = new (string, string)[] {
+        ("Mokou", "\"I’ll do my best today too, Keine!\"")
+    };
+
+    static (string name, string sentence)[] diag10 = new (string, string)[] {
+        ("Mokou", "\"Well… I s’pose we better get to it…\"")
+    };
+
+    static (string name, string sentence)[] diag11 = new (string, string)[] {
+        ("Mokou", "\"Good morning…\"")
+    };
+
+    static (string name, string sentence)[] diag12 = new (string, string)[] {
+        ("Mokou", "\"It’s chilly today, eh, Keine?\"")
+    };
+
+    static (string name, string sentence)[] diag13 = new (string, string)[] {
+        ("Mokou", "\"...\"")
+    };
 
     (string name, string sentence)[] currentDiag;
 
     (string name, string sentence)[][] diagLibrary = new (string, string)[][] {
-        diag1, diag2 };
+        diag1, diag2, diag3, diag4, diag5, diag6, diag7, diag8, diag9, diag10,
+        diag11, diag12, diag13};
 
     private int currentDiagId = 0;
     
@@ -42,7 +92,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
 
-        if (dialogueRunning && (Input.GetKeyDown(KeyCode.Alpha6)))
+        if (dialogueRunning && (Input.GetKeyDown(KeyCode.Space)))
         {
             sentenceId++;
             if (sentenceId >= currentDiag.Length)

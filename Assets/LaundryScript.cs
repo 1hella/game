@@ -26,21 +26,22 @@ public class LaundryScript : TaskScript
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                Debug.Log("space pressed");
                 if (!locked && count < MAX_COUNT)
                 {
                     count++;
                     if (count % 2 == 1)
                     {
+                        progressBar.fillAmount = (float)count / MAX_COUNT;
                         animator.SetBool("ChopReset", false);
                         animator.SetBool("ChopStarted", true);
-                        progressBar.fillAmount = (float)count / MAX_COUNT;
                         locked = true;
                     }
                     else
                     {
+                        progressBar.fillAmount = (float)count / MAX_COUNT;
                         animator.SetBool("ChopReset", true);
                         animator.SetBool("ChopStarted", false);
-                        progressBar.fillAmount = (float)count / MAX_COUNT;
                     }
                 }
                 else
@@ -61,6 +62,7 @@ public class LaundryScript : TaskScript
     {
         started = true;
         progressBar.fillAmount = 0;
+        count = 0;
     }
 
     public override void StopTask()

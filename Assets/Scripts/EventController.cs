@@ -12,19 +12,21 @@ public class EventController : MonoBehaviour
     public GameObject keine;
     public GameObject mokouEating;
     public bool keineAlive = true;
+    public bool lateGame = false;
 
     public DialogueManager dialogController;
-    private int nextDiagId = 0;
+    //private int nextDiagId = 0;
     private bool eventHasDiag = false;
     private int doneCounter = 0;
+    private int dayCounter = 0;
     private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
 
     enum EventType
     {
         Morning,
         FoodTime,
-        PostFood,
-        Exit
+        LateMorning,
+        LateFoodTime
     }
     private EventType currentEvent;
 
@@ -44,24 +46,6 @@ public class EventController : MonoBehaviour
         new Vector2(-1.1f, 2.1f)
     };
 
-    /*
-    private Vector2[] mokouAfterFoodTargets = {
-        new Vector2(-3.4f, 2.1f),
-        new Vector2(-3.8f, -0.6f),
-        new Vector2(-2.1f, -1.9f)
-    };
-
-    private Vector2[] keineAfterFoodTargets = {
-        new Vector2(-3.4f, 2.1f),
-        new Vector2(-3.8f, -0.6f),
-        new Vector2(0, -1.9f)
-    };
-
-    private Vector2[] keineExitTarget = {
-        new Vector2(3.4f, -6)
-    };
-    */
-
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +59,12 @@ public class EventController : MonoBehaviour
 
     public void DoMorningEvent()
     {
+        if (dayCounter > 5)
+        {
+            lateGame = true;
+            DoLategameMorning();
+                return;
+        }
         currentEvent = EventType.Morning;
         playerController.GoToMorningPos();
         keineController.GoToMorningPos();
@@ -84,8 +74,36 @@ public class EventController : MonoBehaviour
         eventHasDiag = true;
     }
 
+    public void DoLategameMorning()
+    {
+        lateGame = true;
+        if (dayCounter > 7)
+        {
+            keineAlive = false;
+            mokouEating.GetComponent<MokouEatingScript>().isAlone = true;
+        }
+        currentEvent = EventType.LateMorning;
+        playerController.GoToMorningPos();
+        if (keineAlive)
+        {
+            keineController.GoToLateMorningPos();
+            keineController.BeginEvent(null);
+        } else
+        {
+            keine.SetActive(false);
+        }
+        doneCounter = 0;
+        playerController.BeginEvent(null);
+        eventHasDiag = true;
+    }
+
     public void DoFoodTimeEvent()
     {
+        if (dayCounter > 5)
+        {
+            DoLategameFoodTime();
+            return;
+        }
         currentEvent = EventType.FoodTime;
         playerController.GoToCookingPos();
         keineController.GoToCookingPos();
@@ -93,49 +111,42 @@ public class EventController : MonoBehaviour
         keineController.BeginEvent(keineFoodTimeTargets);
         playerController.BeginEvent(mokouFoodTimeTargets);
         eventHasDiag = false;
+
     }
 
-    /*
-    public void DoPostFoodEvent()
+    public void DoLategameFoodTime()
     {
-        player.SetActive(true);
+        currentEvent = EventType.LateFoodTime;
+        playerController.GoToCookingPos();
+        //keineController.GoToCookingPos();
         if (keineAlive)
-            keine.SetActive(true);
-        currentEvent = EventType.PostFood;
-        playerController.GoToNightPos();
-        keineController.GoToNightPos();
+        {
+            //keineController.GoToLateMorningPos();
+            keineController.BeginEvent(null);
+        }
         doneCounter = 0;
-        keineController.BeginEvent(keineAfterFoodTargets);
-        playerController.BeginEvent(mokouAfterFoodTargets);
-        eventHasDiag = true;
-    }
-
-    public void DoExitEvent()
-    {
-        Debug.Log("started exit event");
-        currentEvent = EventType.Exit;
-        doneCounter = 0;
-        playerController.BeginEvent(null);
-        keineController.BeginEvent(keineExitTarget);
+        keineController.BeginEvent(keineFoodTimeTargets);
+        playerController.BeginEvent(mokouFoodTimeTargets);
         eventHasDiag = false;
     }
-    */
 
     public void DoneMovement()
     {
         doneCounter++;
-        if (doneCounter < 2)
+        if (keineAlive && (doneCounter < 2))
             return;
 
         switch (currentEvent)
         {
             case EventType.Morning:
-            //case EventType.PostFood:
-                if (dialogController.StartDialogueSet(nextDiagId))
+            case EventType.LateMorning:
+                if (dialogController.StartDialogueSet(dayCounter))
                 {
-                    keineController.FaceLeft();
+                    if (keineAlive)
+                        keineController.FaceLeft();
                     playerController.FaceRight();
-                    nextDiagId++;
+                    if (dayCounter < 12)
+                        dayCounter++;
                 }
                 break;
             case EventType.FoodTime:
@@ -150,24 +161,6 @@ public class EventController : MonoBehaviour
                 break;
         }
 
-        /*
-        if (currentEvent == EventType.Morning || currentEvent == EventType.PostFood)
-        {
-            //start dialogue
-            if (dialogController.StartDialogueSet(nextDiagId))
-            {
-                keineController.FaceLeft();
-                playerController.FaceRight();
-                nextDiagId++;
-            }
-        } else if (currentEvent == EventType.FoodTime)
-        {
-            //play anim, have an event at the end of that call the post food event
-        } else
-        {
-            DoneEvent();
-        }
-        */
     }
 
     public void DoneDiag()
@@ -175,24 +168,21 @@ public class EventController : MonoBehaviour
         switch (currentEvent)
         {
             case EventType.Morning:
+            case EventType.LateMorning:
                 DoneEvent();
                 break;
-            /*case EventType.PostFood:
-                DoExitEvent();
-                break;
-                */
         }
     }
 
     public void DoneEvent()
     {
         playerController.canMoveFreely = true;
-        keineController.canMoveFreely = true;
+        if (!lateGame)
+            keineController.canMoveFreely = true;
     }
 
     public void FinishEating()
     {
-        //Debug.Log("call the thing here to have it fade out and go to next day");
         gameController.EndDay = true;
     }
 
