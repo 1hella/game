@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MenuMusicPlayer : MonoBehaviour
 {
-    public AudioClip intro1;
-    public AudioClip loop1;
+    public AudioClip song;
     private AudioSource audioSource;
     private bool started = false;
 
@@ -14,23 +13,8 @@ public class MenuMusicPlayer : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         audioSource = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            audioSource.clip = intro1;
-            audioSource.Play();
-            started = true;
-        }
-
-        if (started && (!audioSource.isPlaying))
-        {
-            audioSource.clip = loop1;
-            audioSource.Play();
-            audioSource.loop = true;
-        }
+        audioSource.clip = song;
+        audioSource.Play();
+        started = true;
     }
 }
