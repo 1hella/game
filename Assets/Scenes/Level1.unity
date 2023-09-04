@@ -1161,6 +1161,7 @@ MonoBehaviour:
   eventController: {fileID: 887806979}
   player: {fileID: 1604778819}
   followDistance: 1.5
+  lateMorningPosition: {x: -1, y: 3.8, z: 0}
 --- !u!50 &588954562
 Rigidbody2D:
   serializedVersion: 4
@@ -1282,6 +1283,7 @@ MonoBehaviour:
   keine: {fileID: 588954558}
   mokouEating: {fileID: 1347852578}
   keineAlive: 1
+  lateGame: 0
   dialogController: {fileID: 105640550}
 --- !u!1 &909648797
 GameObject:

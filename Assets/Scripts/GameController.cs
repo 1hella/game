@@ -56,6 +56,11 @@ public class GameController : MonoBehaviour
             eventController.DoFoodTimeEvent();
             //eventController.DoPostFoodEvent();
         }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            eventController.DoLategameMorning();
+            //eventController.DoPostFoodEvent();
+        }
 
     }
 

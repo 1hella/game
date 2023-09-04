@@ -25,10 +25,18 @@ public class DialogueManager : MonoBehaviour
         ("Mokou", "Test dialogue B3"),
         ("Keine", "Test dialogue B4!")};
 
+    static (string name, string sentence)[] diag3 = new (string, string)[] {
+        ("Keine", "Test dialogue C1!"),
+        ("Mokou", "Test dialogue C2")};
+
+    static (string name, string sentence)[] diag4 = new (string, string)[] {
+        ("Mokou", "...")
+    };
+
     (string name, string sentence)[] currentDiag;
 
     (string name, string sentence)[][] diagLibrary = new (string, string)[][] {
-        diag1, diag2 };
+        diag1, diag2, diag3, diag4 };
 
     private int currentDiagId = 0;
     

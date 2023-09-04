@@ -9,6 +9,7 @@ public class KeineController : CharacterControllerScript
     public float followDistance;
     //public Vector3 meetingPosition;
     private Animator animator;
+    public Vector3 lateMorningPosition;
 
     //private bool sitting = false;
 
@@ -58,6 +59,12 @@ public class KeineController : CharacterControllerScript
         animator.SetBool("isWalking", false);
     }
 
+    public void GoToLateMorningPos()
+    {
+        canMoveFreely = false;
+        body.position = lateMorningPosition;
+    }
+
     /*
     public void WalkToEvent()
     {
@@ -76,5 +83,5 @@ public class KeineController : CharacterControllerScript
         }
     }
     */
-        
+
 }
