@@ -8,6 +8,10 @@ public class EventController : MonoBehaviour
     public PlayerController playerController;
     public KeineController keineController;
     public GameController gameController;
+    public GameObject player;
+    public GameObject keine;
+    public GameObject mokouEating;
+    public bool keineAlive = true;
 
     public DialogueManager dialogController;
     private int nextDiagId = 0;
@@ -28,6 +32,19 @@ public class EventController : MonoBehaviour
         new Vector2(0, -1.9f)
     };
 
+    private Vector2[] mokouFoodTimeTargets = {
+        new Vector2(-3.8f, -0.6f),
+        new Vector2(-3.4f, 3.4f),
+        //new Vector2(-2.6f, 2.1f)
+    };
+
+    private Vector2[] keineFoodTimeTargets = {
+        new Vector2(-3.8f, -0.6f),
+        new Vector2(-3.4f, 2.1f),
+        new Vector2(-1.1f, 2.1f)
+    };
+
+    /*
     private Vector2[] mokouAfterFoodTargets = {
         new Vector2(-3.4f, 2.1f),
         new Vector2(-3.8f, -0.6f),
@@ -43,6 +60,7 @@ public class EventController : MonoBehaviour
     private Vector2[] keineExitTarget = {
         new Vector2(3.4f, -6)
     };
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -66,8 +84,23 @@ public class EventController : MonoBehaviour
         eventHasDiag = true;
     }
 
+    public void DoFoodTimeEvent()
+    {
+        currentEvent = EventType.FoodTime;
+        playerController.GoToCookingPos();
+        keineController.GoToCookingPos();
+        doneCounter = 0;
+        keineController.BeginEvent(keineFoodTimeTargets);
+        playerController.BeginEvent(mokouFoodTimeTargets);
+        eventHasDiag = false;
+    }
+
+    /*
     public void DoPostFoodEvent()
     {
+        player.SetActive(true);
+        if (keineAlive)
+            keine.SetActive(true);
         currentEvent = EventType.PostFood;
         playerController.GoToNightPos();
         keineController.GoToNightPos();
@@ -86,6 +119,7 @@ public class EventController : MonoBehaviour
         keineController.BeginEvent(keineExitTarget);
         eventHasDiag = false;
     }
+    */
 
     public void DoneMovement()
     {
@@ -93,15 +127,47 @@ public class EventController : MonoBehaviour
         if (doneCounter < 2)
             return;
 
+        switch (currentEvent)
+        {
+            case EventType.Morning:
+            //case EventType.PostFood:
+                if (dialogController.StartDialogueSet(nextDiagId))
+                {
+                    keineController.FaceLeft();
+                    playerController.FaceRight();
+                    nextDiagId++;
+                }
+                break;
+            case EventType.FoodTime:
+                player.SetActive(false);
+                mokouEating.SetActive(true);
+                mokouEating.GetComponent<MokouEatingScript>().Initialize();
+                if (keineAlive)
+                    keine.SetActive(false);
+                break;
+            default:
+                DoneEvent();
+                break;
+        }
+
+        /*
         if (currentEvent == EventType.Morning || currentEvent == EventType.PostFood)
         {
             //start dialogue
             if (dialogController.StartDialogueSet(nextDiagId))
+            {
+                keineController.FaceLeft();
+                playerController.FaceRight();
                 nextDiagId++;
+            }
+        } else if (currentEvent == EventType.FoodTime)
+        {
+            //play anim, have an event at the end of that call the post food event
         } else
         {
             DoneEvent();
         }
+        */
     }
 
     public void DoneDiag()
@@ -111,9 +177,10 @@ public class EventController : MonoBehaviour
             case EventType.Morning:
                 DoneEvent();
                 break;
-            case EventType.PostFood:
+            /*case EventType.PostFood:
                 DoExitEvent();
                 break;
+                */
         }
     }
 
@@ -121,5 +188,16 @@ public class EventController : MonoBehaviour
     {
         playerController.canMoveFreely = true;
         keineController.canMoveFreely = true;
+    }
+
+    public void FinishEating()
+    {
+        //Debug.Log("call the thing here to have it fade out and go to next day");
+        gameController.EndDay = true;
+    }
+
+    public void disableEatingAnims()
+    {
+        mokouEating.SetActive(false);
     }
 }

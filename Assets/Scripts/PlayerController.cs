@@ -41,6 +41,12 @@ public class PlayerController : CharacterControllerScript
         body.position = initialPosition;
     }
 
+    public void FaceRight()
+    {
+        animator.SetFloat("XInput", 1);
+        animator.SetBool("isWalking", false);
+    }
+
     /*public void GoToHelloPosition()
     {
         canMoveFreely = false;
