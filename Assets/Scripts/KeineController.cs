@@ -52,6 +52,12 @@ public class KeineController : CharacterControllerScript
         }
     }
 
+    public void FaceLeft()
+    {
+        animator.SetFloat("XInput", -1);
+        animator.SetBool("isWalking", false);
+    }
+
     /*
     public void WalkToEvent()
     {

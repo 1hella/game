@@ -7,6 +7,7 @@ public abstract class CharacterControllerScript : MonoBehaviour
     public Rigidbody2D body;
     public Vector3 initialPosition;
     public Vector3 foodPosition;
+    public Vector3 cookingPosition;
     public bool canMoveFreely = true; //should be false when game starts, it turns off for events and tasks
     protected bool inEvent = false;
     protected Vector2[] eventPositions;
@@ -97,12 +98,17 @@ public abstract class CharacterControllerScript : MonoBehaviour
     {
         canMoveFreely = false;
         body.position = initialPosition;
-        Debug.Log("position is now " + body.position);
     }
 
     public void GoToNightPos()
     {
         canMoveFreely = false;
         body.position = foodPosition;
+    }
+
+    public void GoToCookingPos()
+    {
+        canMoveFreely = false;
+        body.position = cookingPosition;
     }
 }
