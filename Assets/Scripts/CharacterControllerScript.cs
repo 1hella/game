@@ -8,10 +8,12 @@ public abstract class CharacterControllerScript : MonoBehaviour
     public float speed;
     public Rigidbody2D body;
     public Vector3 initialPosition;
+    public Vector3 foodPosition;
     public bool canMoveFreely = true; //should be false when game starts, it turns off for events and tasks
     protected bool inEvent = false;
     protected Vector2[] eventPositions;
-    protected Vector2 nextEventPosition;
+    protected Vector2 currentEventPosition;
+    private int currentPositionId = 0;
     public EventController eventController;
 
     // Start is called before the first frame update
@@ -42,10 +44,14 @@ public abstract class CharacterControllerScript : MonoBehaviour
     {
         if (newEventPositions == null)
         {
+            //this character doesn't move for the event
             inEvent = false;
             eventController.DoneMovement();
+            return;
         }
         eventPositions = newEventPositions;
+        currentPositionId = 0;
+        currentEventPosition = eventPositions[0];
         inEvent = true;
         canMoveFreely = false;
     }
@@ -53,17 +59,24 @@ public abstract class CharacterControllerScript : MonoBehaviour
     protected void EventMovement()
     {
         inEvent = true;
-        float dist = Vector2.Distance(body.position, nextEventPosition);
-        //Debug.Log(dist);
-        if (dist > 0.02)
+        float dist = Vector2.Distance(body.position, currentEventPosition);
+        if (dist > 0.03)
         {
-            body.velocity = (nextEventPosition - body.position).normalized * speed;
+            body.velocity = (currentEventPosition - body.position).normalized * speed;
         }
         else
         {
-            body.velocity = Vector3.zero;
-            inEvent = false;
-            eventController.DoneMovement();
+            currentPositionId++;
+            if (currentPositionId < eventPositions.Length)
+            {
+                currentEventPosition = eventPositions[currentPositionId];
+            } else
+            {
+                body.velocity = Vector3.zero;
+                inEvent = false;
+                eventController.DoneMovement();
+            }
+            
         }
     }
 
@@ -71,5 +84,12 @@ public abstract class CharacterControllerScript : MonoBehaviour
     {
         canMoveFreely = false;
         body.position = initialPosition;
+        Debug.Log("position is now " + body.position);
+    }
+
+    public void GoToNightPos()
+    {
+        canMoveFreely = false;
+        body.position = foodPosition;
     }
 }

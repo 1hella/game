@@ -17,22 +17,8 @@ public class KeineController : CharacterControllerScript
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected new void Update()
     {
-        /*
-        if (inEvent)
-        {
-            EventMovement();
-        }
-        else
-        {
-            if (canMoveFreely)
-            {
-                DefaultMovement();
-            }
-        }
-        */
-        //Super.Update();
         base.Update();
     }
 

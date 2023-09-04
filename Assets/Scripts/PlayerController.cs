@@ -11,15 +11,8 @@ public class PlayerController : CharacterControllerScript
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected new void Update()
     {
-        /*if (canMoveFreely) {
-            DefaultMovement();
-        } else
-        {
-            body.velocity = new Vector2(0, 0);
-        }
-        */
         base.Update();
     }
 
