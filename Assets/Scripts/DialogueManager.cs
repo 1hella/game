@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
 
     static (string name, string sentence) [] diag1 = new (string, string)[] {
         ("Mokou", "\"Mornin', Keine. Thanks for coming to help out with the charcoal making.\""),
-        ("Keine", "\"Yeah, of course! Anything for a friend!\"")};
+        ("Keine", "\"Yeah, of course! Anything for a friend! Remember to press the space bar to complete tasks.\"")};
 
     static (string name, string sentence)[] diag2 = new (string, string)[] {
         ("Keine", "\"Hello, Mokou! Shall we do our best today as well?\""),
@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
 
-        if (dialogueRunning && (Input.GetKeyDown(KeyCode.Alpha6)))
+        if (dialogueRunning && (Input.GetKeyDown(KeyCode.Space)))
         {
             sentenceId++;
             if (sentenceId >= currentDiag.Length)

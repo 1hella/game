@@ -39,18 +39,16 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (!inScene)
+        {
+            //morningTestCounter++;
+            eventController.DoMorningEvent();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!inScene && Input.GetKeyDown(KeyCode.M)/* && (morningTestCounter < 2)*/)
-        {
-            //morningTestCounter++;
-            eventController.DoMorningEvent();
-        }
-
         if (Input.GetKeyDown(KeyCode.N))
         {
             eventController.DoFoodTimeEvent();
