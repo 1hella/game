@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public bool canMove = true;
     private Vector3 initialPosition;
+    private Animator animator;
     //public Vector3 helloPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();    
+        animator = GetComponent<Animator>();
         initialPosition = playerBody.position;
     }
 
@@ -23,6 +25,16 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove) {
             Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            if (movement != Vector2.zero)
+            {
+                animator.SetFloat("XInput", movement.x);
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
+            
             playerBody.velocity = movement * speed;
         } else
         {
