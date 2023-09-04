@@ -64,6 +64,7 @@ public class ChopTestScript : TaskScript
     {
         started = true;
         progressBar.fillAmount = 0;
+        input = 0;
     }
 
     public override void StopTask()
