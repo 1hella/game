@@ -9,13 +9,14 @@ public class GameController : MonoBehaviour
     public DialogueManager dialogController;
     public UIController uiController;
     public PlayerController playerController;
-    //public GameObject player;
+    public GameObject player;
     public GameObject keine;
     public KeineController keineController;
     public EventController eventController;
     private bool inScene = false;
     //private int nextDiag = 0;
     //private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
+    public int dayId = 1;
 
     private const int NUM_TASKS = 4;
     private bool endDay;
@@ -52,17 +53,25 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            eventController.DoPostFoodEvent();
+            eventController.DoFoodTimeEvent();
+            //eventController.DoPostFoodEvent();
         }
 
     }
 
     public void RestartLevel()
     {
-        playerController.ResetLocation();
-        dialogController.PlayNext();
+        //playerController.ResetLocation();
+        dayId++;
+        eventController.disableEatingAnims();
+        //dialogController.PlayNext();
+        keine.SetActive(true);
+        player.SetActive(true);
+        //playerController.GoToMorningPos();
+        //keineController.GoToMorningPos();
         taskController.ResetAllTasks();
         EndDay = false;
+        eventController.DoMorningEvent();
     }
 
     /**
