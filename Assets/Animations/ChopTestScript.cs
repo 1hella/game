@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChopTestScript : TaskScript
 {
@@ -9,11 +10,46 @@ public class ChopTestScript : TaskScript
     private bool chopStarted = false;
     private bool chopDone = false;
     private int count = 0;
-    private const int MAX_COUNT = 4 * 2 - 1; // todo: remove 2 when animation resets itself
+    private const int MAX_COUNT = 3 * 2 - 1; // todo: remove 2 when animation resets itself
+    private bool started = false;
+    private float input;
+    public Image progressBar;
+    private bool keyDown;
 
     // Update is called once per frame
     void Update()
     {
+        if (started)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                keyDown = false;
+                Debug.Log(progressBar.fillAmount);
+                if (progressBar.fillAmount < 1)
+                {
+                    input = 0;
+                }
+                else
+                {
+                    animator.SetBool("ChopReset", false);
+                    animator.SetBool("ChopStarted", true);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                keyDown = true;
+            }
+            if (keyDown)
+            {
+                input += .75f * Time.deltaTime;
+                if (input > 100)
+                {
+                    input = 100;
+                }
+                
+            }
+            progressBar.fillAmount = input;
+        }
     }
 
     //called by anim event in the chop swing animation
@@ -21,20 +57,31 @@ public class ChopTestScript : TaskScript
     {
         chopDone = true;
         chopStarted = false;
-        stopTask();
+        StopTask();
     }
 
-    public override void startTask()
+    public override void StartTask()
     {
-        // show and start the timers
+        started = true;
+        progressBar.fillAmount = 0;
     }
 
-    public override void stopTask()
+    public override void StopTask()
     {
-        // stop the timers and hide them
+        started = false;
+        progressBar.fillAmount = 100;
+        input = 100;
+        animator.SetBool("ChopReset", true);
+        animator.SetBool("ChopStarted", false);
     }
 
-    public override bool progress()
+    public override bool IsFinished()
+    {
+        Debug.Log(input);
+        return input == 100;
+    }
+
+    public override bool Progress()
     {
         // todo: reset the animation at the end of the frame.
         // for now, reset the animation on every second count

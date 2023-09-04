@@ -74,6 +74,14 @@ public class GameController : MonoBehaviour
         eventController.DoMorningEvent();
     }
 
+    /**
+     * 0 indexed
+     */
+    public int GetNumDay()
+    {
+        return score / NUM_TASKS;
+    }
+
     /*
     private void StartMorningEvent(int dayId)
     {
