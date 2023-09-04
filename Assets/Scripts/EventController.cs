@@ -15,9 +15,10 @@ public class EventController : MonoBehaviour
     public bool lateGame = false;
 
     public DialogueManager dialogController;
-    private int nextDiagId = 0;
+    //private int nextDiagId = 0;
     private bool eventHasDiag = false;
     private int doneCounter = 0;
+    private int dayCounter = 0;
     private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
 
     enum EventType
@@ -58,8 +59,9 @@ public class EventController : MonoBehaviour
 
     public void DoMorningEvent()
     {
-        if (lateGame)
+        if (dayCounter > 5)
         {
+            lateGame = true;
             DoLategameMorning();
                 return;
         }
@@ -75,6 +77,11 @@ public class EventController : MonoBehaviour
     public void DoLategameMorning()
     {
         lateGame = true;
+        if (dayCounter > 7)
+        {
+            keineAlive = false;
+            mokouEating.GetComponent<MokouEatingScript>().isAlone = true;
+        }
         currentEvent = EventType.LateMorning;
         playerController.GoToMorningPos();
         if (keineAlive)
@@ -92,7 +99,7 @@ public class EventController : MonoBehaviour
 
     public void DoFoodTimeEvent()
     {
-        if (lateGame)
+        if (dayCounter > 5)
         {
             DoLategameFoodTime();
             return;
@@ -108,26 +115,37 @@ public class EventController : MonoBehaviour
 
     public void DoLategameFoodTime()
     {
-
+        currentEvent = EventType.LateFoodTime;
+        playerController.GoToCookingPos();
+        //keineController.GoToCookingPos();
+        if (keineAlive)
+        {
+            //keineController.GoToLateMorningPos();
+            keineController.BeginEvent(null);
+        }
+        doneCounter = 0;
+        keineController.BeginEvent(keineFoodTimeTargets);
+        playerController.BeginEvent(mokouFoodTimeTargets);
+        eventHasDiag = false;
     }
 
     public void DoneMovement()
     {
         doneCounter++;
-        if (!lateGame && (doneCounter < 2))
+        if (keineAlive && (doneCounter < 2))
             return;
 
         switch (currentEvent)
         {
             case EventType.Morning:
             case EventType.LateMorning:
-                if (dialogController.StartDialogueSet(nextDiagId))
+                if (dialogController.StartDialogueSet(dayCounter))
                 {
                     if (keineAlive)
                         keineController.FaceLeft();
                     playerController.FaceRight();
-                    if (nextDiagId < 12)
-                        nextDiagId++;
+                    if (dayCounter < 12)
+                        dayCounter++;
                 }
                 break;
             case EventType.FoodTime:
