@@ -19,7 +19,6 @@ public class UIController : MonoBehaviour
     {
         if (!isFadedToBlack() && gameController.EndDay)
         {
-            Debug.Log("Ending day");
             StartCoroutine(FadeBlackOutSquare(true));
             gameController.EndDay = false;
         } else if (isFadedToBlack() && Input.GetKeyDown(KeyCode.Space)) {

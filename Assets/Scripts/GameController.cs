@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     //private int nextDiag = 0;
     //private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
     public int dayId = 1;
+    private bool endingDay;
 
     private const int NUM_TASKS = 4;
     private bool endDay;
@@ -29,7 +30,8 @@ public class GameController : MonoBehaviour
             score = value;
             if (score % NUM_TASKS == 0 && score > 0)
             {
-                EndDay = true;
+                eventController.DoFoodTimeEvent();
+                endingDay = true;
             }
         }
     }
@@ -49,15 +51,15 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            eventController.DoFoodTimeEvent();
-            //eventController.DoPostFoodEvent();
-        }
         if (Input.GetKeyDown(KeyCode.B))
         {
             eventController.DoLategameMorning();
             //eventController.DoPostFoodEvent();
+        }
+        if (endingDay && Input.GetKeyDown(KeyCode.Space))
+        {
+            endDay = true;
+            endingDay = false;
         }
 
     }
