@@ -29,14 +29,19 @@ public class ActivityController : MonoBehaviour
     void Update()
     {
 
-        if (startedTask && Input.GetKeyDown(KeyCode.Space))
+        if (startedTask && taskScript.IsFinished())
         {
-            bool finished = taskScript.progress();
-            if (finished)
-            {
-                FinishTask();
-            }
+            FinishTask();
         }
+
+        //if (startedTask && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    bool finished = taskScript.progress();
+        //    if (finished)
+        //    {
+        //        FinishTask();
+        //    }
+        //}
 
         if (!uiController.isFadedToBlack() && !startedTask && !doneTask && inActivationRange && Input.GetKeyDown(KeyCode.Space))
         {
@@ -87,7 +92,7 @@ public class ActivityController : MonoBehaviour
         keine.GetComponent<KeineController>().canMoveFreely = false;
         snapCharacterPositions();
         //player.transform.position = new Vector3(-6,-3,-1);
-        taskScript.startTask();
+        taskScript.StartTask();
     }
 
     private void FinishTask()
@@ -106,7 +111,7 @@ public class ActivityController : MonoBehaviour
         taskController.FinishTask(this);
         startedTask = false;
         doneTask = true;
-        taskScript.stopTask();
+        taskScript.StopTask();
     }
 
     private void snapCharacterPositions ()
