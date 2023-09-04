@@ -1269,7 +1269,7 @@ GameObject:
   - component: {fileID: 909648800}
   - component: {fileID: 909648799}
   m_Layer: 0
-  m_Name: chopCharacter
+  m_Name: CookingCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1313,7 +1313,7 @@ Animator:
   m_GameObject: {fileID: 909648797}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c29c862730746d24d83049f31d4f3043, type: 2}
+  m_Controller: {fileID: 9100000, guid: e6e4ddef9b9d0a447ac249d1e667cbef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2199,7 +2199,7 @@ GameObject:
   - component: {fileID: 1484705908}
   - component: {fileID: 1484705907}
   m_Layer: 0
-  m_Name: chopCharacter
+  m_Name: LaundryCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2243,7 +2243,7 @@ Animator:
   m_GameObject: {fileID: 1484705905}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c29c862730746d24d83049f31d4f3043, type: 2}
+  m_Controller: {fileID: 9100000, guid: c2503d27e0ff5bf499478c7a34e5749f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
