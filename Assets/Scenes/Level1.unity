@@ -1968,6 +1968,7 @@ RectTransform:
   m_Children:
   - {fileID: 1053139621}
   - {fileID: 1938440038}
+  - {fileID: 5721781}
   m_Father: {fileID: 1284979386}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2091,7 +2092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155318731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.05, z: 1}
+  m_LocalPosition: {x: -0.03, y: -0.05, z: -0.47}
   m_LocalScale: {x: 0.91767, y: 0.91767, z: 0.91767}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3547,6 +3548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753198917}
   - component: {fileID: 1753198916}
+  - component: {fileID: 1753198918}
   m_Layer: 0
   m_Name: Cookingpot
   m_TagString: Untagged
@@ -3614,13 +3616,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753198915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.48, y: -3.29, z: 0}
+  m_LocalPosition: {x: -4.48, y: -2.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1753198918
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753198915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e085d4605d6f5ba469104132d40e1434, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1795448412
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,7 +3743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795448412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.05, z: 1}
+  m_LocalPosition: {x: -0.03, y: -0.05, z: 0.79}
   m_LocalScale: {x: 0.91767, y: 0.91767, z: 0.91767}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4619,7 +4642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042289706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.1970787, y: -4.4076223, z: 2.0680802}
+  m_LocalPosition: {x: -5.1970787, y: -4.4076223, z: 1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
