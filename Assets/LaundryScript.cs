@@ -5,13 +5,19 @@ using UnityEngine.UI;
 
 public class LaundryScript : TaskScript
 {
-
+    // used for animating Keine
     public Animator animator;
 
+    // used to count the number of animation events
     private int count = 0;
-    private const int MAX_COUNT = 3 * 2; // todo: remove 2 when animation resets itself
+    // used to keep track of the number of events
+    private const int MAX_COUNT = 3 * 2;
+    // used to start spacebar listener
     private bool started = false;
+    // used to prevent the next animation from starting
     private bool locked;
+    // used to update user progress
+    public Image progressBar;
 
     // Update is called once per frame
     void Update()
@@ -27,12 +33,14 @@ public class LaundryScript : TaskScript
                     {
                         animator.SetBool("ChopReset", false);
                         animator.SetBool("ChopStarted", true);
+                        progressBar.fillAmount = (float)count / MAX_COUNT;
                         locked = true;
                     }
                     else
                     {
                         animator.SetBool("ChopReset", true);
                         animator.SetBool("ChopStarted", false);
+                        progressBar.fillAmount = (float)count / MAX_COUNT;
                     }
                 }
                 else
@@ -52,10 +60,12 @@ public class LaundryScript : TaskScript
     public override void StartTask()
     {
         started = true;
+        progressBar.fillAmount = 0;
     }
 
     public override void StopTask()
     {
+        progressBar.fillAmount = 100;
         animator.SetBool("ChopReset", true);
         animator.SetBool("ChopStarted", false);
     }
