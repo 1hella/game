@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class PlayerController : CharacterControllerScript
 {
+
+    private Rigidbody2D playerBody;
+    public float speed;
+    public bool canMove = true;
+    private Vector3 initialPosition;
+    private Animator animator;
+    //public Vector3 helloPosition;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerBody = GetComponent<Rigidbody2D>();    
+        animator = GetComponent<Animator>();
         initialPosition = body.position;
     }
 
-    // Update is called once per frame
-    protected new void Update()
-    {
+    protected override void Update() {
         base.Update();
     }
 
@@ -22,10 +30,18 @@ public class PlayerController : CharacterControllerScript
         {
             Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             body.velocity = movement * speed;
+            if (movement != Vector2.zero)
+            {
+                animator.SetFloat("XInput", movement.x);
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
         else
             body.velocity = new Vector2(0, 0);
-
     }
 
     public void ResetLocation() {
