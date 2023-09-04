@@ -240,7 +240,7 @@ SpriteRenderer:
   m_Size: {x: 3.82, y: 3.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5721780
@@ -1373,7 +1373,7 @@ SpriteRenderer:
   m_Size: {x: 3.82, y: 3.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1053139620
@@ -1845,6 +1845,7 @@ MonoBehaviour:
   foodPosition: {x: 0, y: 0, z: 0}
   canMoveFreely: 1
   eventController: {fileID: 0}
+  canMove: 1
 --- !u!1 &1333196771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2303,7 @@ SpriteRenderer:
   m_Size: {x: 3.82, y: 3.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1512856093
@@ -2656,6 +2657,7 @@ MonoBehaviour:
   foodPosition: {x: -2.6, y: 2.1, z: 0}
   canMoveFreely: 1
   eventController: {fileID: 887806979}
+  canMove: 1
 --- !u!61 &1604778824
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2735,7 +2737,7 @@ GameObject:
   - component: {fileID: 1799889573}
   - component: {fileID: 1799889572}
   m_Layer: 0
-  m_Name: chopCharacter
+  m_Name: charcoalCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2764,7 +2766,7 @@ Animator:
   m_GameObject: {fileID: 1799889571}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c29c862730746d24d83049f31d4f3043, type: 2}
+  m_Controller: {fileID: 9100000, guid: 86e5b16c2545c2a45a16021cbf3371e5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2824,7 +2826,7 @@ SpriteRenderer:
   m_Size: {x: 3.82, y: 3.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1799889575
