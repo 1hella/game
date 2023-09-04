@@ -8,12 +8,15 @@ public class KeineController : CharacterControllerScript
     //public GameObject gameController;
     public float followDistance;
     //public Vector3 meetingPosition;
+    private Animator animator;
 
     //private bool sitting = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        SetAnimator(animator);
     }
 
     // Update is called once per frame
@@ -29,11 +32,23 @@ public class KeineController : CharacterControllerScript
         {
             Vector2 playerPos = player.transform.position;
             Vector2 keinePos = body.position;
-            body.velocity = (playerPos - keinePos).normalized * speed;
+            Vector2 distance = playerPos - keinePos;
+            body.velocity = distance.normalized * speed;
+            Vector2 movement = body.velocity;
+            if (movement != Vector2.zero)
+            {
+                animator.SetFloat("XInput", movement.x);
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
         else
         {
             body.velocity = new Vector3(0, 0, 0);
+            animator.SetBool("isWalking", false);
         }
     }
 
