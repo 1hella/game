@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterControllerScript
 {
 
     private Rigidbody2D playerBody;
@@ -17,14 +17,19 @@ public class PlayerController : MonoBehaviour
     {
         playerBody = GetComponent<Rigidbody2D>();    
         animator = GetComponent<Animator>();
-        initialPosition = playerBody.position;
+        initialPosition = body.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update() {
+        base.Update();
+    }
+
+    protected override void DefaultMovement()
     {
-        if (canMove) {
+        if (canMoveFreely)
+        {
             Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            body.velocity = movement * speed;
             if (movement != Vector2.zero)
             {
                 animator.SetFloat("XInput", movement.x);
@@ -34,21 +39,19 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("isWalking", false);
             }
-            
-            playerBody.velocity = movement * speed;
-        } else
-        {
-            playerBody.velocity = new Vector2(0, 0);
         }
+        else
+            body.velocity = new Vector2(0, 0);
     }
 
-    public void ResetLocation() { 
-        playerBody.position = initialPosition;
+    public void ResetLocation() {
+        body.position = initialPosition;
     }
 
-    public void GoToHelloPosition()
+    /*public void GoToHelloPosition()
     {
-        canMove = false;
-        playerBody.position = initialPosition;
+        canMoveFreely = false;
+        body.position = initialPosition;
     }
+    */
 }

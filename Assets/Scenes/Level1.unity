@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 887806976}
+  eventController: {fileID: 887806979}
   boxName: {fileID: 1053139623}
   boxSentence: {fileID: 1938440040}
   portrait: {fileID: 5721782}
@@ -1152,15 +1153,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b7e9e7b9943404e99ba35893c96bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1604778819}
-  gameController: {fileID: 887806976}
-  keineTransform: {fileID: 588954560}
-  followDistance: 1.5
   speed: 3
   body: {fileID: 588954562}
-  offscreenPosition: {x: 3.4, y: -6, z: 0}
-  meetingPosition: {x: 0, y: -1.9, z: 0}
-  canFollow: 1
+  initialPosition: {x: 3.4, y: -6, z: 0}
+  foodPosition: {x: -1.1, y: 2.1, z: 0}
+  canMoveFreely: 1
+  eventController: {fileID: 887806979}
+  player: {fileID: 1604778819}
+  followDistance: 1.5
 --- !u!50 &588954562
 Rigidbody2D:
   serializedVersion: 4
@@ -1198,6 +1198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887806978}
   - component: {fileID: 887806977}
+  - component: {fileID: 887806979}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1221,8 +1222,9 @@ MonoBehaviour:
   dialogController: {fileID: 105640550}
   uiController: {fileID: 2136782849}
   playerController: {fileID: 1604778823}
-  player: {fileID: 1604778819}
   keine: {fileID: 588954558}
+  keineController: {fileID: 588954561}
+  eventController: {fileID: 887806979}
 --- !u!4 &887806978
 Transform:
   m_ObjectHideFlags: 0
@@ -1238,6 +1240,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887806979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887806976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c021a8a523be74cb347e98b0515823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1604778823}
+  keineController: {fileID: 588954561}
+  gameController: {fileID: 887806977}
+  dialogController: {fileID: 105640550}
 --- !u!1 &909648797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,13 +1834,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315419737}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d22771501e2aca4abe13eb31db0efa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  canMove: 0
+  body: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  foodPosition: {x: 0, y: 0, z: 0}
+  canMoveFreely: 1
+  eventController: {fileID: 0}
 --- !u!1 &1333196771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,7 +2651,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  canMove: 1
+  body: {fileID: 1604778822}
+  initialPosition: {x: -2.15104, y: -1.947105, z: -1}
+  foodPosition: {x: -2.6, y: 2.1, z: 0}
+  canMoveFreely: 1
+  eventController: {fileID: 887806979}
 --- !u!61 &1604778824
 BoxCollider2D:
   m_ObjectHideFlags: 0

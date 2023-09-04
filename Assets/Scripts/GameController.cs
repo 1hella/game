@@ -9,11 +9,13 @@ public class GameController : MonoBehaviour
     public DialogueManager dialogController;
     public UIController uiController;
     public PlayerController playerController;
-    public GameObject player;
+    //public GameObject player;
     public GameObject keine;
+    public KeineController keineController;
+    public EventController eventController;
     private bool inScene = false;
-    private int nextDiag = 0;
-    private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
+    //private int nextDiag = 0;
+    //private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
 
     private const int NUM_TASKS = 4;
     private bool endDay;
@@ -42,10 +44,15 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inScene && Input.GetKeyDown(KeyCode.M) && (morningTestCounter < 2))
+        if (!inScene && Input.GetKeyDown(KeyCode.M)/* && (morningTestCounter < 2)*/)
         {
-            morningTestCounter++;
-            StartMorningEvent(0);
+            //morningTestCounter++;
+            eventController.DoMorningEvent();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            eventController.DoPostFoodEvent();
         }
 
     }
@@ -58,28 +65,31 @@ public class GameController : MonoBehaviour
         EndDay = false;
     }
 
+    /*
     private void StartMorningEvent(int dayId)
     {
         inScene = true;
-        keine.GetComponent<KeineController>().GoOffscreen();
-        //player go to start
-        player.GetComponent<PlayerController>().GoToHelloPosition();
-        //keine start walking in
-        keine.GetComponent<KeineController>().WalkToEvent();
+        keineController.GoToMorningPos();
+        playerController.GoToMorningPos();
+        keineController.WalkToEvent();
     }
+    */
 
-    public void StartDialogue()
+    /*public void StartDialogue()
     {
-        keine.GetComponent<KeineController>().canFollow = false;
-        player.GetComponent<PlayerController>().canMove = false;
+        keineController.canMoveFreely = false;
+        playerController.canMoveFreely = false;
         if (dialogController.StartDialogueSet(nextDiag))
             nextDiag++;
     }
+    */
 
+    /*
     public void DoneDialogue()
     {
-        keine.GetComponent<KeineController>().canFollow = true;
-        player.GetComponent<PlayerController>().canMove = true;
+        keineController.canMoveFreely = true;
+        playerController.canMoveFreely = true;
         inScene = false;
     }
+    */
 }
