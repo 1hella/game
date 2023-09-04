@@ -61,6 +61,7 @@ public class LaundryScript : TaskScript
     {
         started = true;
         progressBar.fillAmount = 0;
+        count = 0;
     }
 
     public override void StopTask()
