@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class CharacterControllerScript : MonoBehaviour
@@ -15,11 +13,17 @@ public abstract class CharacterControllerScript : MonoBehaviour
     protected Vector2 currentEventPosition;
     private int currentPositionId = 0;
     public EventController eventController;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+
+    public void SetAnimator(Animator animator)
+    {
+        this.animator = animator;
     }
 
     // Update is called once per frame
@@ -63,6 +67,11 @@ public abstract class CharacterControllerScript : MonoBehaviour
         if (dist > 0.03)
         {
             body.velocity = (currentEventPosition - body.position).normalized * speed;
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", true);
+                animator.SetFloat("XInput", body.velocity.x);
+            }
         }
         else
         {
@@ -75,6 +84,10 @@ public abstract class CharacterControllerScript : MonoBehaviour
                 body.velocity = Vector3.zero;
                 inEvent = false;
                 eventController.DoneMovement();
+                if (animator != null)
+                {
+                    animator.SetBool("isWalking", false);
+                }
             }
             
         }
