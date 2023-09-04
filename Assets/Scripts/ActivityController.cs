@@ -82,9 +82,9 @@ public class ActivityController : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         player.SetActive(false);
-        player.GetComponent<PlayerController>().canMove = false;
+        player.GetComponent<PlayerController>().canMoveFreely = false;
         keine.SetActive(false);
-        keine.GetComponent<KeineController>().canFollow = false;
+        keine.GetComponent<KeineController>().canMoveFreely = false;
         snapCharacterPositions();
         //player.transform.position = new Vector3(-6,-3,-1);
         taskScript.startTask();
@@ -100,9 +100,9 @@ public class ActivityController : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         player.SetActive(true);
-        player.GetComponent<PlayerController>().canMove = true;
+        player.GetComponent<PlayerController>().canMoveFreely = true;
         keine.SetActive(true);
-        keine.GetComponent<KeineController>().canFollow = true;
+        keine.GetComponent<KeineController>().canMoveFreely = true;
         taskController.FinishTask(this);
         startedTask = false;
         doneTask = true;

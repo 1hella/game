@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     private bool dialogueRunning = false;
     private int sentenceId = 0;
     public GameObject gameController;
+    public EventController eventController;
     public TextMeshProUGUI boxName;
     public TextMeshProUGUI boxSentence;
     public Image portrait;
@@ -104,6 +105,6 @@ public class DialogueManager : MonoBehaviour
     }
     private void FinishDiag()
     {
-        gameController.GetComponent<GameController>().DoneDialogue();
+        eventController.DoneEvent();
     }
 }
