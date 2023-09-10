@@ -18,6 +18,8 @@ public class LaundryScript : TaskScript
     private bool locked;
     // used to update user progress
     public Image progressBar;
+    // used for the laundry task animations
+    public UIController uiController;
 
     // Update is called once per frame
     void Update()
@@ -39,6 +41,7 @@ public class LaundryScript : TaskScript
                     }
                     else
                     {
+                        uiController.DoLaundryStep(count/2);
                         progressBar.fillAmount = (float)count / MAX_COUNT;
                         animator.SetBool("ChopReset", true);
                         animator.SetBool("ChopStarted", false);

@@ -7,11 +7,14 @@ public class UIController : MonoBehaviour
 {
     public GameObject blackOutSquare;
     public GameController gameController;
+    public GameObject laundrySheet1;
+    public GameObject laundrySheet2;
+    public GameObject laundrySheet3;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResetLaundry();
     }
 
     // Update is called once per frame
@@ -64,5 +67,47 @@ public class UIController : MonoBehaviour
     public bool isFadedToBlack()
     {
         return blackOutSquare.GetComponent<SpriteRenderer>().color.a > 0;
+    }
+
+    public void DoLaundryStep(int count)
+    {
+        if (count == 1)
+        {
+            DoLaundryStep1();
+        } else if (count == 2)
+        {
+            DoLaundryStep2();
+        } else if (count == 3)
+        {
+            DoLaundryStep3();
+        }
+    }
+
+    public void ResetLaundry()
+    {
+        laundrySheet1.SetActive(false);
+        laundrySheet2.SetActive(false);
+        laundrySheet3.SetActive(false);
+    }
+
+    public void DoLaundryStep1()
+    {
+        laundrySheet1.SetActive(true);
+        laundrySheet2.SetActive(false);
+        laundrySheet3.SetActive(false);
+    }
+
+    public void DoLaundryStep2()
+    {
+        laundrySheet1.SetActive(true);
+        laundrySheet2.SetActive(true);
+        laundrySheet3.SetActive(false);
+    }
+
+    public void DoLaundryStep3()
+    {
+        laundrySheet1.SetActive(true);
+        laundrySheet2.SetActive(true);
+        laundrySheet3.SetActive(true);
     }
 }
