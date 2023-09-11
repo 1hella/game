@@ -72,6 +72,7 @@ public class CharcoalScript : TaskScript
         characterAnimator.SetBool("ChopReset", true);
         characterAnimator.SetBool("ChopStarted", false);
         charcoalAnimator.SetBool("isLit", false);
+        uiController.HideCharcoalPile();
     }
 
     public override bool IsFinished()
@@ -83,5 +84,11 @@ public class CharcoalScript : TaskScript
     public override bool Progress()
     {
         return false;
+    }
+
+    public override void ResetTask()
+    {
+        uiController.ResetCharcoalPile();
+        charcoalAnimator.SetBool("isLit", false);
     }
 }

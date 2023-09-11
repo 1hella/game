@@ -89,4 +89,9 @@ public class CookingScript : TaskScript
     {
         return false;
     }
+
+    public override void ResetTask()
+    {
+        cauldrenAnimator.SetBool("isLit", false);
+    }
 }

@@ -5752,6 +5752,7 @@ MonoBehaviour:
   laundrySheet2: {fileID: 390201542}
   laundrySheet3: {fileID: 591258103}
   bambooPile: {fileID: 1022116469}
+  charcoalPile: {fileID: 5805223}
   bambooAnimator: {fileID: 984105566}
 --- !u!4 &2136782850
 Transform:

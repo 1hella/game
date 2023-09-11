@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,20 @@ public class UIController : MonoBehaviour
     public GameObject laundrySheet2;
     public GameObject laundrySheet3;
     public GameObject bambooPile;
+    public GameObject charcoalPile;
     public Animator bambooAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
+        ResetAll();
+    }
+
+    public void ResetAll()
+    {
         ResetLaundry();
-        ResetBamboo();
+        ResetBambooPile();
+        ResetCharcoalPile();
     }
 
     // Update is called once per frame
@@ -114,7 +122,7 @@ public class UIController : MonoBehaviour
         laundrySheet3.SetActive(true);
     }
 
-    public void ResetBamboo()
+    public void ResetBambooPile()
     {
         HideBambooPile();
     }
@@ -127,5 +135,20 @@ public class UIController : MonoBehaviour
     public void HideBambooPile()
     {
         bambooPile.SetActive(false);
+    }
+
+    public void ResetCharcoalPile()
+    {
+        ShowCharcoalPile();
+    }
+
+    public void HideCharcoalPile()
+    {
+        charcoalPile.SetActive(false);
+    }
+
+    public void ShowCharcoalPile()
+    {
+        charcoalPile.SetActive(true);
     }
 }

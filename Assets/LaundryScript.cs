@@ -84,4 +84,9 @@ public class LaundryScript : TaskScript
     {
         return false;
     }
+
+    public override void ResetTask()
+    {
+        uiController.ResetLaundry();
+    }
 }

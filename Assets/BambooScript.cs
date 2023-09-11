@@ -3,16 +3,12 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChopTestScript : TaskScript
+public class BambooScript : TaskScript
 {
 
     public Animator characterAnimator;
     public Animator bambooAnimator;
     public UIController uiController;
-    private bool chopStarted = false;
-    private bool chopDone = false;
-    private int count = 0;
-    private const int MAX_COUNT = 3 * 2 - 1; // todo: remove 2 when animation resets itself
     private bool started = false;
     private float input;
     public Image progressBar;
@@ -58,8 +54,6 @@ public class ChopTestScript : TaskScript
     //called by anim event in the chop swing animation
     public void ChopDone()
     {
-        chopDone = true;
-        chopStarted = false;
         StopTask();
     }
 
@@ -88,26 +82,12 @@ public class ChopTestScript : TaskScript
 
     public override bool Progress()
     {
-        // todo: reset the animation at the end of the frame.
-        // for now, reset the animation on every second count
-        if (!chopStarted && count < MAX_COUNT)
-        {
-            count++;
-            if (count % 2 == 1)
-            {
-                characterAnimator.SetBool("ChopReset", false);
-                characterAnimator.SetBool("ChopStarted", true);
-                chopDone = false;
-                chopStarted = true;
-            } else
-            {
-                characterAnimator.SetBool("ChopReset", true);
-                characterAnimator.SetBool("ChopStarted", false);
-            }
-        } else if (count >= MAX_COUNT)
-        {
-            return true;
-        }
         return false;
+    }
+
+    public override void ResetTask()
+    {
+        uiController.ResetBambooPile();
+        bambooAnimator.SetBool("isCut", false);
     }
 }

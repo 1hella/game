@@ -75,8 +75,10 @@ public class GameController : MonoBehaviour
         //playerController.GoToMorningPos();
         //keineController.GoToMorningPos();
         taskController.ResetAllTasks();
+        uiController.ResetAll();
         EndDay = false;
         eventController.DoMorningEvent();
+        
     }
 
     /**
