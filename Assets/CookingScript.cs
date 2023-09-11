@@ -74,10 +74,10 @@ public class CookingScript : TaskScript
 
     public override void StopTask()
     {
+        cauldrenAnimator.SetBool("isLit", false);
         progressBar.fillAmount = 100;
         characterAnimator.SetBool("ChopReset", true);
         characterAnimator.SetBool("ChopStarted", false);
-        cauldrenAnimator.SetBool("isLit", false);
     }
 
     public override bool IsFinished()

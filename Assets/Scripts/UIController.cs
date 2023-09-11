@@ -10,11 +10,14 @@ public class UIController : MonoBehaviour
     public GameObject laundrySheet1;
     public GameObject laundrySheet2;
     public GameObject laundrySheet3;
+    public GameObject bambooPile;
+    public Animator bambooAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         ResetLaundry();
+        ResetBamboo();
     }
 
     // Update is called once per frame
@@ -109,5 +112,20 @@ public class UIController : MonoBehaviour
         laundrySheet1.SetActive(true);
         laundrySheet2.SetActive(true);
         laundrySheet3.SetActive(true);
+    }
+
+    public void ResetBamboo()
+    {
+        HideBambooPile();
+    }
+
+    public void ShowBambooPile()
+    {
+        bambooPile.SetActive(true);
+    }
+
+    public void HideBambooPile()
+    {
+        bambooPile.SetActive(false);
     }
 }

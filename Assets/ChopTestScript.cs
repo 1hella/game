@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class ChopTestScript : TaskScript
 {
 
-    public Animator animator;
+    public Animator characterAnimator;
+    public Animator bambooAnimator;
+    public UIController uiController;
     private bool chopStarted = false;
     private bool chopDone = false;
     private int count = 0;
@@ -31,8 +33,9 @@ public class ChopTestScript : TaskScript
                 }
                 else
                 {
-                    animator.SetBool("ChopReset", false);
-                    animator.SetBool("ChopStarted", true);
+                    characterAnimator.SetBool("ChopReset", false);
+                    characterAnimator.SetBool("ChopStarted", true);
+                    bambooAnimator.SetBool("isCut", true);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
@@ -72,8 +75,9 @@ public class ChopTestScript : TaskScript
         started = false;
         progressBar.fillAmount = 100;
         input = 100;
-        animator.SetBool("ChopReset", true);
-        animator.SetBool("ChopStarted", false);
+        characterAnimator.SetBool("ChopReset", true);
+        characterAnimator.SetBool("ChopStarted", false);
+        uiController.ShowBambooPile();
     }
 
     public override bool IsFinished()
@@ -91,14 +95,14 @@ public class ChopTestScript : TaskScript
             count++;
             if (count % 2 == 1)
             {
-                animator.SetBool("ChopReset", false);
-                animator.SetBool("ChopStarted", true);
+                characterAnimator.SetBool("ChopReset", false);
+                characterAnimator.SetBool("ChopStarted", true);
                 chopDone = false;
                 chopStarted = true;
             } else
             {
-                animator.SetBool("ChopReset", true);
-                animator.SetBool("ChopStarted", false);
+                characterAnimator.SetBool("ChopReset", true);
+                characterAnimator.SetBool("ChopStarted", false);
             }
         } else if (count >= MAX_COUNT)
         {
