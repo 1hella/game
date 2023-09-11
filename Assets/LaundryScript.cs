@@ -41,7 +41,6 @@ public class LaundryScript : TaskScript
                     }
                     else
                     {
-                        uiController.DoLaundryStep(count/2);
                         progressBar.fillAmount = (float)count / MAX_COUNT;
                         animator.SetBool("ChopReset", true);
                         animator.SetBool("ChopStarted", false);
@@ -59,6 +58,7 @@ public class LaundryScript : TaskScript
     public void ChopDone()
     {
         locked = false;
+        uiController.DoLaundryStep(count / 2 + 1);
     }
 
     public override void StartTask()
