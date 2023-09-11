@@ -44,7 +44,6 @@ public class CharcoalScript : TaskScript
                 {
                     input = 100;
                 }
-                
             }
             progressBar.fillAmount = input;
         }
@@ -66,19 +65,19 @@ public class CharcoalScript : TaskScript
 
     public override void StopTask()
     {
+        charcoalAnimator.SetBool("isLit", false);
         started = false;
         progressBar.fillAmount = 100;
         input = 100;
         characterAnimator.SetBool("ChopReset", true);
         characterAnimator.SetBool("ChopStarted", false);
-        charcoalAnimator.SetBool("isLit", false);
         uiController.HideCharcoalPile();
+        
     }
 
     public override bool IsFinished()
     {
-        Debug.Log(input);
-        return input == 100;
+        return input >= 100;
     }
 
     public override bool Progress()
