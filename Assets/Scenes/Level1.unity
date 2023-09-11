@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 390201543}
   - component: {fileID: 390201544}
   m_Layer: 0
-  m_Name: cloth001
+  m_Name: ClothM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1663,7 +1663,7 @@ GameObject:
   - component: {fileID: 591258104}
   - component: {fileID: 591258105}
   m_Layer: 0
-  m_Name: cloth000
+  m_Name: ClothR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1928,11 +1928,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 909648797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900afeba9b5f7c24881dd6996121c9ac, type: 3}
+  m_Script: {fileID: 11500000, guid: e683bed8c91f8b446b904cf2f33c3fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 909648800}
   progressBar: {fileID: 1309746192}
+  uiController: {fileID: 2136782849}
 --- !u!1 &935836805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,7 +2394,7 @@ GameObject:
   - component: {fileID: 1099187978}
   - component: {fileID: 1099187979}
   m_Layer: 0
-  m_Name: cloth002
+  m_Name: ClothL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3855,6 +3856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1484705908}
   progressBar: {fileID: 2083942062}
+  uiController: {fileID: 2136782849}
 --- !u!1 &1512856093
 GameObject:
   m_ObjectHideFlags: 0
@@ -5757,9 +5759,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackOutSquare: {fileID: 1537015584}
   gameController: {fileID: 887806977}
-  laundrySheet1: {fileID: 0}
-  laundrySheet2: {fileID: 0}
-  laundrySheet3: {fileID: 0}
+  laundrySheet1: {fileID: 1099187977}
+  laundrySheet2: {fileID: 390201542}
+  laundrySheet3: {fileID: 591258103}
 --- !u!4 &2136782850
 Transform:
   m_ObjectHideFlags: 0
