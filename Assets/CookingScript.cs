@@ -6,7 +6,14 @@ using UnityEngine.UI;
 public class CookingScript : TaskScript
 {
     // used for animating Keine
-    public Animator animator;
+    public Animator characterAnimator;
+    // used for the cauldren animations
+    public Animator cauldrenAnimator;
+    // used to update user progress
+    public Image progressBar;
+    // used for the cooking task animations
+    public UIController uiController;
+    
 
     // used to count the number of animation events
     private int count = 0;
@@ -16,10 +23,7 @@ public class CookingScript : TaskScript
     private bool started = false;
     // used to prevent the next animation from starting
     private bool locked;
-    // used to update user progress
-    public Image progressBar;
-    // used for the cooking task animations
-    public UIController uiController;
+    
 
     // Update is called once per frame
     void Update()
@@ -35,15 +39,15 @@ public class CookingScript : TaskScript
                     if (count % 2 == 1)
                     {
                         progressBar.fillAmount = (float)count / MAX_COUNT;
-                        animator.SetBool("ChopReset", false);
-                        animator.SetBool("ChopStarted", true);
+                        characterAnimator.SetBool("ChopReset", false);
+                        characterAnimator.SetBool("ChopStarted", true);
                         locked = true;
                     }
                     else
                     {
                         progressBar.fillAmount = (float)count / MAX_COUNT;
-                        animator.SetBool("ChopReset", true);
-                        animator.SetBool("ChopStarted", false);
+                        characterAnimator.SetBool("ChopReset", true);
+                        characterAnimator.SetBool("ChopStarted", false);
                     }
                 }
                 else
@@ -65,13 +69,15 @@ public class CookingScript : TaskScript
         started = true;
         progressBar.fillAmount = 0;
         count = 0;
+        cauldrenAnimator.SetBool("isLit", true);
     }
 
     public override void StopTask()
     {
         progressBar.fillAmount = 100;
-        animator.SetBool("ChopReset", true);
-        animator.SetBool("ChopStarted", false);
+        characterAnimator.SetBool("ChopReset", true);
+        characterAnimator.SetBool("ChopStarted", false);
+        cauldrenAnimator.SetBool("isLit", false);
     }
 
     public override bool IsFinished()
