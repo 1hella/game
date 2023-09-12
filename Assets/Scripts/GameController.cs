@@ -66,6 +66,8 @@ public class GameController : MonoBehaviour
 
     public void RestartLevel()
     {
+        taskController.ResetAllTasks();
+        uiController.ResetAll();
         //playerController.ResetLocation();
         dayId++;
         eventController.disableEatingAnims();
@@ -74,8 +76,6 @@ public class GameController : MonoBehaviour
         player.SetActive(true);
         //playerController.GoToMorningPos();
         //keineController.GoToMorningPos();
-        taskController.ResetAllTasks();
-        uiController.ResetAll();
         EndDay = false;
         eventController.DoMorningEvent();
         

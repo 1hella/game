@@ -87,6 +87,6 @@ public class LaundryScript : TaskScript
 
     public override void ResetTask()
     {
-        uiController.ResetLaundry();
+        uiController.ResetLaundryRack();
     }
 }

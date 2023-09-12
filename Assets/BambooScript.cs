@@ -87,7 +87,7 @@ public class BambooScript : TaskScript
 
     public override void ResetTask()
     {
-        uiController.ResetBambooPile();
         bambooAnimator.SetBool("isCut", false);
+        uiController.ResetBambooPile();
     }
 }

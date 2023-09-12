@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
 
     public void ResetAll()
     {
-        ResetLaundry();
+        ResetLaundryRack();
         ResetBambooPile();
         ResetCharcoalPile();
     }
@@ -94,7 +94,10 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void ResetLaundry()
+    /**
+     * Removes all the clothes from the rack
+     */
+    public void ResetLaundryRack()
     {
         laundrySheet1.SetActive(false);
         laundrySheet2.SetActive(false);
