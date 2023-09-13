@@ -33,7 +33,7 @@ public class CookingScript : TaskScript
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("space pressed");
-                if (!locked && count < MAX_COUNT)
+                if (!locked && !IsFinished())
                 {
                     count++;
                     if (count % 2 == 1)
@@ -50,9 +50,12 @@ public class CookingScript : TaskScript
                         characterAnimator.SetBool("ChopStarted", false);
                     }
                 }
-                else
+                else if (IsFinished())
                 {
                     StopTask();
+                } else
+                {
+                    locked = false;
                 }
             }
         }
@@ -76,6 +79,7 @@ public class CookingScript : TaskScript
     {
         cauldrenAnimator.SetBool("isLit", false);
         progressBar.fillAmount = 100;
+        count = MAX_COUNT;
         characterAnimator.SetBool("ChopReset", true);
         characterAnimator.SetBool("ChopStarted", false);
     }
