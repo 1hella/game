@@ -28,11 +28,11 @@ public class PlayerController : CharacterControllerScript
     {
         if (transform.position.y < followerTransform.position.y)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z - 0.1f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z - 0.01f);
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z + 0.1f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z + 0.01f);
         }
     }
 

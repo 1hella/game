@@ -324,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5805223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.69, y: 2.88, z: 0}
+  m_LocalPosition: {x: 2.69, y: 2.88, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1255,7 +1255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543763058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.2199707, y: 0.89001465, z: 0}
+  m_LocalPosition: {x: -7.2199707, y: 0.89001465, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1493,7 +1493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588954558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6595716, y: -1.3208075, z: -0.88982093}
+  m_LocalPosition: {x: 2.6595716, y: -1.3208075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2105,7 +2105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984105564}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.2, y: -0.56, z: 0}
+  m_LocalPosition: {x: 7.2, y: -0.56, z: -0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2190,7 +2190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022116469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.369995, y: 1.1900022, z: 0}
+  m_LocalPosition: {x: 6.369995, y: 1.1900022, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3343,7 +3343,6 @@ MonoBehaviour:
   canMoveFreely: 1
   eventController: {fileID: 0}
   canMove: 1
-  uiController: {fileID: 0}
   followerTransform: {fileID: 0}
 --- !u!1 &1333196771
 GameObject:
@@ -4306,7 +4305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604778819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4914904, y: -1.26789, z: -1.0398209}
+  m_LocalPosition: {x: -1.4914904, y: -1.26789, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4360,7 +4359,6 @@ MonoBehaviour:
   canMoveFreely: 1
   eventController: {fileID: 887806979}
   canMove: 1
-  uiController: {fileID: 0}
   followerTransform: {fileID: 588954560}
 --- !u!61 &1604778824
 BoxCollider2D:
@@ -5791,7 +5789,6 @@ MonoBehaviour:
   bambooPile: {fileID: 1022116469}
   charcoalPile: {fileID: 5805223}
   bambooAnimator: {fileID: 984105566}
-  keine: {fileID: 0}
 --- !u!4 &2136782850
 Transform:
   m_ObjectHideFlags: 0
