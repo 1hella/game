@@ -11,7 +11,7 @@ public class LaundryScript : TaskScript
     // used to count the number of animation events
     private int count = 0;
     // used to keep track of the number of events
-    private const int MAX_COUNT = 3 * 2;
+    private const int MAX_COUNT = 3;
     // used to start spacebar listener
     private bool started = false;
     // used to prevent the next animation from starting
@@ -34,14 +34,12 @@ public class LaundryScript : TaskScript
                     count++;
                     if (count % 2 == 1)
                     {
-                        progressBar.fillAmount = (float)count / MAX_COUNT;
                         animator.SetBool("ChopReset", false);
                         animator.SetBool("ChopStarted", true);
                         locked = true;
                     }
                     else
                     {
-                        progressBar.fillAmount = (float)count / MAX_COUNT;
                         animator.SetBool("ChopReset", true);
                         animator.SetBool("ChopStarted", false);
                     }
@@ -60,6 +58,7 @@ public class LaundryScript : TaskScript
     //called by anim event in the chop swing animation
     public void ChopDone()
     {
+        progressBar.fillAmount = (float)(count + 1) / 2 / MAX_COUNT;
         locked = false;
         uiController.DoLaundryStep(count / 2 + 1);
     }
@@ -81,7 +80,7 @@ public class LaundryScript : TaskScript
 
     public override bool IsFinished()
     {
-        return count >= MAX_COUNT;
+        return count >= MAX_COUNT * 2;
     }
 
     public override bool Progress()
