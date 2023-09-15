@@ -18,6 +18,24 @@ public class PlayerController : CharacterControllerScript
         SetAnimator(animator);
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        SetZAxis();
+    }
+
+    private void SetZAxis()
+    {
+        if (transform.position.y < followerTransform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z - 0.1f);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z + 0.1f);
+        }
+    }
+
     protected override void DefaultMovement()
     {
         if (canMoveFreely)
@@ -28,13 +46,6 @@ public class PlayerController : CharacterControllerScript
             {
                 animator.SetFloat("XInput", movement.x);
                 animator.SetBool("isWalking", true);
-                if (transform.position.y < followerTransform.position.y)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z - 0.1f);
-                } else
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z + 0.1f);
-                }
             }
             else
             {

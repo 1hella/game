@@ -21,7 +21,7 @@ public class KeineController : CharacterControllerScript
     }
 
     // Update is called once per frame
-    protected new void Update()
+    protected override void Update()
     {
         base.Update();
     }
