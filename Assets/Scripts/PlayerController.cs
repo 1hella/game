@@ -6,6 +6,7 @@ public class PlayerController : CharacterControllerScript
     private Rigidbody2D playerBody;
     public bool canMove = true;
     private Animator animator;
+    public Transform followerTransform;
     //public Vector3 helloPosition;
 
     // Start is called before the first frame update
@@ -27,6 +28,13 @@ public class PlayerController : CharacterControllerScript
             {
                 animator.SetFloat("XInput", movement.x);
                 animator.SetBool("isWalking", true);
+                if (transform.position.y < followerTransform.position.y)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z - 0.1f);
+                } else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z + 0.1f);
+                }
             }
             else
             {
