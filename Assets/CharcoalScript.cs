@@ -3,14 +3,12 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChopTestScript : TaskScript
+public class CharcoalScript : TaskScript
 {
 
-    public Animator animator;
-    private bool chopStarted = false;
-    private bool chopDone = false;
-    private int count = 0;
-    private const int MAX_COUNT = 3 * 2 - 1; // todo: remove 2 when animation resets itself
+    public Animator characterAnimator;
+    public Animator charcoalAnimator;
+    public UIController uiController;
     private bool started = false;
     private float input;
     public Image progressBar;
@@ -31,8 +29,8 @@ public class ChopTestScript : TaskScript
                 }
                 else
                 {
-                    animator.SetBool("ChopReset", false);
-                    animator.SetBool("ChopStarted", true);
+                    characterAnimator.SetBool("ChopReset", false);
+                    characterAnimator.SetBool("ChopStarted", true);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
@@ -46,7 +44,6 @@ public class ChopTestScript : TaskScript
                 {
                     input = 100;
                 }
-                
             }
             progressBar.fillAmount = input;
         }
@@ -55,13 +52,12 @@ public class ChopTestScript : TaskScript
     //called by anim event in the chop swing animation
     public void ChopDone()
     {
-        chopDone = true;
-        chopStarted = false;
         StopTask();
     }
 
     public override void StartTask()
     {
+        charcoalAnimator.SetBool("isLit", true);
         started = true;
         progressBar.fillAmount = 0;
         input = 0;
@@ -69,41 +65,29 @@ public class ChopTestScript : TaskScript
 
     public override void StopTask()
     {
+        charcoalAnimator.SetBool("isLit", false);
         started = false;
         progressBar.fillAmount = 100;
         input = 100;
-        animator.SetBool("ChopReset", true);
-        animator.SetBool("ChopStarted", false);
+        characterAnimator.SetBool("ChopReset", true);
+        characterAnimator.SetBool("ChopStarted", false);
+        uiController.HideCharcoalPile();
+        
     }
 
     public override bool IsFinished()
     {
-        Debug.Log(input);
-        return input == 100;
+        return input >= 100;
     }
 
     public override bool Progress()
     {
-        // todo: reset the animation at the end of the frame.
-        // for now, reset the animation on every second count
-        if (!chopStarted && count < MAX_COUNT)
-        {
-            count++;
-            if (count % 2 == 1)
-            {
-                animator.SetBool("ChopReset", false);
-                animator.SetBool("ChopStarted", true);
-                chopDone = false;
-                chopStarted = true;
-            } else
-            {
-                animator.SetBool("ChopReset", true);
-                animator.SetBool("ChopStarted", false);
-            }
-        } else if (count >= MAX_COUNT)
-        {
-            return true;
-        }
         return false;
+    }
+
+    public override void ResetTask()
+    {
+        uiController.ResetCharcoalPile();
+        charcoalAnimator.SetBool("isLit", false);
     }
 }

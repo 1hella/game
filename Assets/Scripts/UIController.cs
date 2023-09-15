@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,24 @@ public class UIController : MonoBehaviour
 {
     public GameObject blackOutSquare;
     public GameController gameController;
+    public GameObject laundrySheet1;
+    public GameObject laundrySheet2;
+    public GameObject laundrySheet3;
+    public GameObject bambooPile;
+    public GameObject charcoalPile;
+    public Animator bambooAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResetAll();
+    }
+
+    public void ResetAll()
+    {
+        ResetLaundryRack();
+        ResetBambooPile();
+        ResetCharcoalPile();
     }
 
     // Update is called once per frame
@@ -64,5 +78,80 @@ public class UIController : MonoBehaviour
     public bool isFadedToBlack()
     {
         return blackOutSquare.GetComponent<SpriteRenderer>().color.a > 0;
+    }
+
+    public void DoLaundryStep(int count)
+    {
+        if (count == 1)
+        {
+            DoLaundryStep1();
+        } else if (count == 2)
+        {
+            DoLaundryStep2();
+        } else if (count == 3)
+        {
+            DoLaundryStep3();
+        }
+    }
+
+    /**
+     * Removes all the clothes from the rack
+     */
+    public void ResetLaundryRack()
+    {
+        laundrySheet1.SetActive(false);
+        laundrySheet2.SetActive(false);
+        laundrySheet3.SetActive(false);
+    }
+
+    public void DoLaundryStep1()
+    {
+        laundrySheet1.SetActive(true);
+        laundrySheet2.SetActive(false);
+        laundrySheet3.SetActive(false);
+    }
+
+    public void DoLaundryStep2()
+    {
+        laundrySheet1.SetActive(true);
+        laundrySheet2.SetActive(true);
+        laundrySheet3.SetActive(false);
+    }
+
+    public void DoLaundryStep3()
+    {
+        laundrySheet1.SetActive(true);
+        laundrySheet2.SetActive(true);
+        laundrySheet3.SetActive(true);
+    }
+
+    public void ResetBambooPile()
+    {
+        HideBambooPile();
+    }
+
+    public void ShowBambooPile()
+    {
+        bambooPile.SetActive(true);
+    }
+
+    public void HideBambooPile()
+    {
+        bambooPile.SetActive(false);
+    }
+
+    public void ResetCharcoalPile()
+    {
+        ShowCharcoalPile();
+    }
+
+    public void HideCharcoalPile()
+    {
+        charcoalPile.SetActive(false);
+    }
+
+    public void ShowCharcoalPile()
+    {
+        charcoalPile.SetActive(true);
     }
 }

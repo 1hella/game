@@ -21,4 +21,6 @@ public abstract class TaskScript : MonoBehaviour
     public abstract bool Progress();
 
     public abstract bool IsFinished();
+
+    public abstract void ResetTask();
 }

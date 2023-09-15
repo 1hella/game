@@ -76,6 +76,7 @@ public class ActivityController : MonoBehaviour
         startedTask = false;
         animator.SetBool("Done", false);
         doneTask = false;
+        taskScript.ResetTask();
     }
 
     private void BeginTask()
