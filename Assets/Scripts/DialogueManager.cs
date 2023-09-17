@@ -135,8 +135,12 @@ public class DialogueManager : MonoBehaviour
 
     public bool StartDialogueSet(int id)
     {
-        if (id < 0 || id >= diagLibrary.Length)
+        if (id < 0)
             return false;
+        if (id >= diagLibrary.Length)
+        {
+            id = diagLibrary.Length - 1;
+        }
 
         currentDiagId = id;
         currentDiag = diagLibrary[currentDiagId];
