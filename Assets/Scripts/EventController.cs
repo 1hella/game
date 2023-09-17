@@ -186,9 +186,4 @@ public class EventController : MonoBehaviour
     {
         mokouEating.SetActive(false);
     }
-
-    public void increment()
-    {
-
-    }
 }
