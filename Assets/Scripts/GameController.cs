@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public KeineController keineController;
     public EventController eventController;
     private bool inScene = false;
+    public bool debugEnabled;
     //private int nextDiag = 0;
     //private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
     public int dayId = 1;
@@ -58,56 +59,61 @@ public class GameController : MonoBehaviour
             //eventController.DoPostFoodEvent();
         }*/
 
-        if (Input.GetKeyDown(KeyCode.N)) //finish the day immediately
+        if (debugEnabled)
         {
-            Score += (NUM_TASKS - (score % NUM_TASKS));
-        }
+            if (Input.GetKeyDown(KeyCode.N)) //finish the day immediately
+            {
+                Score += (NUM_TASKS - (score % NUM_TASKS));
+            }
 
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            morningTest(1);
-        } else if (Input.GetKeyDown(KeyCode.F2)) {
-            morningTest(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.F3))
-        {
-            morningTest(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.F4))
-        {
-            morningTest(4);
-        }
-        else if (Input.GetKeyDown(KeyCode.F5))
-        {
-            morningTest(5);
-        }
-        else if (Input.GetKeyDown(KeyCode.F6))
-        {
-            morningTest(6);
-        }
-        else if (Input.GetKeyDown(KeyCode.F7))
-        {
-            morningTest(7);
-        }
-        else if (Input.GetKeyDown(KeyCode.F8))
-        {
-            morningTest(8);
-        }
-        else if (Input.GetKeyDown(KeyCode.F9))
-        {
-            morningTest(9);
-        }
-        else if (Input.GetKeyDown(KeyCode.F10))
-        {
-            morningTest(10);
-        }
-        else if (Input.GetKeyDown(KeyCode.F11))
-        {
-            morningTest(11);
-        }
-        else if (Input.GetKeyDown(KeyCode.F12))
-        {
-            morningTest(12);
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                morningTest(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.F2))
+            {
+                morningTest(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.F3))
+            {
+                morningTest(3);
+            }
+            else if (Input.GetKeyDown(KeyCode.F4))
+            {
+                morningTest(4);
+            }
+            else if (Input.GetKeyDown(KeyCode.F5))
+            {
+                morningTest(5);
+            }
+            else if (Input.GetKeyDown(KeyCode.F6))
+            {
+                morningTest(6);
+            }
+            else if (Input.GetKeyDown(KeyCode.F7))
+            {
+                morningTest(7);
+            }
+            else if (Input.GetKeyDown(KeyCode.F8))
+            {
+                morningTest(8);
+            }
+            else if (Input.GetKeyDown(KeyCode.F9))
+            {
+                morningTest(9);
+            }
+            else if (Input.GetKeyDown(KeyCode.F10))
+            {
+                morningTest(10);
+            }
+            else if (Input.GetKeyDown(KeyCode.F11))
+            {
+                morningTest(11);
+            }
+            else if (Input.GetKeyDown(KeyCode.F12))
+            {
+                morningTest(12);
+            }
         }
 
         if (endingDay && Input.GetKeyDown(KeyCode.Space))
