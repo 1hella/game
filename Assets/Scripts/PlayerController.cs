@@ -6,7 +6,6 @@ public class PlayerController : CharacterControllerScript
     private Rigidbody2D playerBody;
     public bool canMove = true;
     private Animator animator;
-    public Transform followerTransform;
     //public Vector3 helloPosition;
 
     // Start is called before the first frame update
@@ -21,19 +20,6 @@ public class PlayerController : CharacterControllerScript
     protected override void Update()
     {
         base.Update();
-        SetZAxis();
-    }
-
-    private void SetZAxis()
-    {
-        if (transform.position.y < followerTransform.position.y)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z - 0.01f);
-        }
-        else
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, followerTransform.position.z + 0.01f);
-        }
     }
 
     protected override void DefaultMovement()

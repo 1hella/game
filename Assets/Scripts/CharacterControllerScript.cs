@@ -15,6 +15,8 @@ public abstract class CharacterControllerScript : MonoBehaviour
     private int currentPositionId = 0;
     public EventController eventController;
     private Animator animator;
+    private float Z_LOWER_BOUNDS = -9;
+    private float Z_UPPER_BOUNDS = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -33,14 +35,18 @@ public abstract class CharacterControllerScript : MonoBehaviour
         if (inEvent)
         {
             EventMovement();
+            UpdateZ();
         }
         else
         {
             if (canMoveFreely)
             {
                 DefaultMovement();
+                UpdateZ();
             }
         }
+
+        
     }
 
     protected abstract void DefaultMovement();
@@ -110,5 +116,12 @@ public abstract class CharacterControllerScript : MonoBehaviour
     {
         canMoveFreely = false;
         body.position = cookingPosition;
+    }
+
+    private void UpdateZ()
+    {
+        float newZ = transform.position.y;
+        newZ = Mathf.Clamp(newZ, Z_LOWER_BOUNDS, Z_UPPER_BOUNDS);
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
 }

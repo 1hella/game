@@ -28,7 +28,11 @@ public class KeineController : CharacterControllerScript
 
     protected override void DefaultMovement()
     {
-        float dist = Vector3.Distance(body.position, player.transform.position);
+        // ignore z values when calculating follow distance
+        var bodyPosition = new Vector3(body.position.x, body.position.y, 0);
+        var playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, 0);
+        
+        float dist = Vector3.Distance(bodyPosition, playerPosition);
         if (dist > followDistance)
         {
             Vector2 playerPos = player.transform.position;
