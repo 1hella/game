@@ -1692,6 +1692,7 @@ MonoBehaviour:
   keine: {fileID: 588954558}
   keineController: {fileID: 588954561}
   eventController: {fileID: 887806979}
+  debugEnabled: 1
   dayId: 1
 --- !u!4 &887806978
 Transform:

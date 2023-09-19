@@ -18,8 +18,6 @@ public class EventController : MonoBehaviour
     //private int nextDiagId = 0;
     private bool eventHasDiag = false;
     private int doneCounter = 0;
-    private int dayCounter = 0;
-    private int morningTestCounter = 0; //ONLY FOR DEBUG, REMOVE LATER
 
     enum EventType
     {
@@ -59,7 +57,7 @@ public class EventController : MonoBehaviour
 
     public void DoMorningEvent()
     {
-        if (dayCounter > 5)
+        if (gameController.GetNumDay() > 5)
         {
             lateGame = true;
             DoLategameMorning();
@@ -77,7 +75,7 @@ public class EventController : MonoBehaviour
     public void DoLategameMorning()
     {
         lateGame = true;
-        if (dayCounter > 7)
+        if (gameController.GetNumDay() > 7)
         {
             keineAlive = false;
             mokouEating.GetComponent<MokouEatingScript>().isAlone = true;
@@ -99,7 +97,7 @@ public class EventController : MonoBehaviour
 
     public void DoFoodTimeEvent()
     {
-        if (dayCounter > 5)
+        if (gameController.GetNumDay() > 5)
         {
             DoLategameFoodTime();
             return;
@@ -140,13 +138,11 @@ public class EventController : MonoBehaviour
         {
             case EventType.Morning:
             case EventType.LateMorning:
-                if (dialogController.StartDialogueSet(dayCounter))
+                if (dialogController.StartDialogueSet(gameController.GetNumDay()))
                 {
                     if (keineAlive)
                         keineController.FaceLeft();
                     playerController.FaceRight();
-                    if (dayCounter < 12)
-                        dayCounter++;
                 }
                 break;
             case EventType.FoodTime:
