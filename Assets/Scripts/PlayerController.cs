@@ -17,6 +17,11 @@ public class PlayerController : CharacterControllerScript
         SetAnimator(animator);
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     protected override void DefaultMovement()
     {
         if (canMoveFreely)
