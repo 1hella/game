@@ -29,6 +29,7 @@ public class EventController : MonoBehaviour
     private EventType currentEvent;
 
     private Vector2[] keineMorningTarget = {
+        new Vector2(2.66f, -1.32f),
         new Vector2(0, -1.9f)
     };
 

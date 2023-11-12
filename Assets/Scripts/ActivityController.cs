@@ -17,6 +17,8 @@ public class ActivityController : MonoBehaviour
     private bool doneTask;
     private bool inActivationRange;
     private int count;
+    private Vector3 playerPosition;
+    private Vector3 keinePosition;
 
 
     // Start is called before the first frame update
@@ -82,6 +84,8 @@ public class ActivityController : MonoBehaviour
     private void BeginTask()
     {
         Debug.Log("started task");
+        playerPosition = player.transform.position;
+        keinePosition = keine.transform.position;
         startedTask = true;
         foreach (Transform child in transform)
         {
@@ -113,6 +117,8 @@ public class ActivityController : MonoBehaviour
         startedTask = false;
         doneTask = true;
         taskScript.StopTask();
+        player.transform.position = playerPosition;
+        keine.transform.position = keinePosition;
     }
 
     private void snapCharacterPositions ()
