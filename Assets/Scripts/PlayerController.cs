@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : CharacterControllerScript
@@ -30,7 +31,10 @@ public class PlayerController : CharacterControllerScript
             body.velocity = movement * speed;
             if (movement != Vector2.zero)
             {
-                animator.SetFloat("XInput", movement.x);
+                if (movement.x != 0)
+                {
+                    animator.SetFloat("XInput", movement.x);
+                }
                 animator.SetBool("isWalking", true);
             }
             else
